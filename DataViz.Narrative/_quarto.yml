@@ -8,6 +8,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - Demo\test.ipynb #needs path, about.qmd is in the same folder
 
 format:
   html:
