@@ -12,5 +12,96 @@
     "title": "About",
     "section": "",
     "text": "About this site\nTesting Testing いいですか\nえええ驚いた\nなぜ"
+  },
+  {
+    "objectID": "Demo/plotly-python.html",
+    "href": "Demo/plotly-python.html",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "",
+    "text": "Goal: recreate four interactive target plots with Plotly in Python. Part 2 (R) has four different plots, so together the two notebooks introduce eight kinds of Plotly charts. There is also one optional bonus plot at the end of this notebook."
+  },
+  {
+    "objectID": "Demo/plotly-python.html#how-this-works",
+    "href": "Demo/plotly-python.html#how-this-works",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "How this works",
+    "text": "How this works\n\nOpen each target plot in your web browser by double clicking the file in target-plots/. Hover over the data, drag to zoom, double click to reset, and click legend entries. Plotly gives you all of this automatically.\nRead the checklist under each plot, then write your code in the empty cell. The hints give you a starting line of code.\nRun the cell and compare your plot with the target. Adjust until they look the same.\nWhen you are done, render this notebook with Quarto (see Submission at the bottom)."
+  },
+  {
+    "objectID": "Demo/plotly-python.html#how-close-is-close-enough",
+    "href": "Demo/plotly-python.html#how-close-is-close-enough",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "How close is close enough?",
+    "text": "How close is close enough?\nGet as close to the target as you can: same chart type, same data, same colors, same title and axis labels. Small differences in appearance are fine and will not lose points. Missing parts of the plot, wrong data, or unlabeled axes will."
+  },
+  {
+    "objectID": "Demo/plotly-python.html#data",
+    "href": "Demo/plotly-python.html#data",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Data",
+    "text": "Data\ndata/auto_mpg.csv: the classic Auto MPG dataset, 392 cars from model years 1970 to 1982.\n\n\n\ncolumn\nmeaning\n\n\n\n\nname\nmake and model\n\n\nmpg\nfuel economy, miles per gallon\n\n\ncylinders\nnumber of engine cylinders\n\n\ndisplacement\nengine size, cubic inches\n\n\nhorsepower\nengine horsepower\n\n\nweight\nvehicle weight, pounds\n\n\nacceleration\nseconds from 0 to 60 mph\n\n\nmodel_year\nmodel year (1970 to 1982)\n\n\norigin\nregion of origin: USA, Europe, or Japan"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#tips-for-every-plot",
+    "href": "Demo/plotly-python.html#tips-for-every-plot",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Tips for every plot",
+    "text": "Tips for every plot\n\nThe setup cell gives you ORIGIN_COLORS, ORIGIN_ORDER, and LABELS. Pass them to every plot like this so your colors, legend order, and axis labels match the targets:\ncolor_discrete_map=ORIGIN_COLORS,\ncategory_orders={\"origin\": ORIGIN_ORDER},\nlabels=LABELS,\ntemplate=\"plotly_white\",\nAdd a title with title=\"...\". Copy the title text from the target.\nEach plot is one call to a Plotly Express function (px.scatter, px.violin, px.line). The checklist tells you which arguments to add."
+  },
+  {
+    "objectID": "Demo/plotly-python.html#setup",
+    "href": "Demo/plotly-python.html#setup",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Setup",
+    "text": "Setup\nRun this cell first. It is provided for you; do not change it.\nThe following code cell is just a utility function that makes plots render correctly inside of VS Code when using Jupyter notebooks.\n\nimport plotly.io as pio\npio.renderers.default = \"plotly_mimetype+notebook_connected\"\n\n\nimport pandas as pd\nimport plotly.express as px\n\ncars = pd.read_csv(\"data/auto_mpg.csv\")\n\n# Use these in every plot so your colors, legend order, and labels match the targets\nORIGIN_ORDER = [\"USA\", \"Europe\", \"Japan\"]\nORIGIN_COLORS = {\"USA\": \"#2a78d6\", \"Europe\": \"#eb6834\", \"Japan\": \"#1baf7a\"}\nLABELS = {\n    \"mpg\": \"Fuel economy (mpg)\",\n    \"weight\": \"Vehicle weight (lb)\",\n    \"horsepower\": \"Horsepower\",\n    \"displacement\": \"Displacement (cu in)\",\n    \"model_year\": \"Model year\",\n    \"origin\": \"Origin\",\n}\n\ncars.head()\n\n\n\n\n\n\n\n\nname\nmpg\ncylinders\ndisplacement\nhorsepower\nweight\nacceleration\nmodel_year\norigin\n\n\n\n\n0\nChevrolet Chevelle Malibu\n18.0\n8\n307.0\n130\n3504\n12.0\n1970\nUSA\n\n\n1\nBuick Skylark 320\n15.0\n8\n350.0\n165\n3693\n11.5\n1970\nUSA\n\n\n2\nPlymouth Satellite\n18.0\n8\n318.0\n150\n3436\n11.0\n1970\nUSA\n\n\n3\nAmc Rebel Sst\n16.0\n8\n304.0\n150\n3433\n12.0\n1970\nUSA\n\n\n4\nFord Torino\n17.0\n8\n302.0\n140\n3449\n10.5\n1970\nUSA"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#test-example",
+    "href": "Demo/plotly-python.html#test-example",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Test example:",
+    "text": "Test example:\nWe provide the following example as a simple test case to make sure that you can render plotly plots inside your environment.\n\nimport plotly.express as px\n\ndf = px.data.gapminder().query(\"year == 2007\")\ntotals = df.groupby(\"continent\", as_index=False)[\"pop\"].sum()\n\nfig = px.bar(totals, x=\"continent\", y=\"pop\")\nfig.show()"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#plot-1-scatter-plot-with-marginal-plots",
+    "href": "Demo/plotly-python.html#plot-1-scatter-plot-with-marginal-plots",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Plot 1: Scatter plot with marginal plots",
+    "text": "Plot 1: Scatter plot with marginal plots\n\nTarget: target-plots/plot-1_python_scatter-marginals.html\nYou will practice: a basic scatter plot, color groups, hover names, marginal plots\n\nWhat to reproduce\n\nweight on the x axis, mpg on the y axis, one color per origin\nA histogram of weight above the scatter plot and box plots of mpg on the right\nHovering over a point shows the car name in bold\n\nHints\n\nStart with fig1 = px.scatter(cars, x=\"weight\", y=\"mpg\", color=\"origin\"), then add the standard arguments from the tips above\nMarginal plots are one argument each: marginal_x=\"histogram\", marginal_y=\"box\"\nThe bold car name in the hover comes from hover_name=\"name\"\nShow the figure with fig1.show()\nDocs: Scatter plots, Marginal plots\n\n\n# Plot 1: your code here\n\nfig1 = px.scatter(cars, x=\"weight\", y=\"mpg\", \n                  marginal_x = \"histogram\",\n                  marginal_y= \"box\",\n                  hover_name= \"name\",\n                  color=\"origin\",\n                  color_discrete_map=ORIGIN_COLORS,\n                  category_orders={\"origin\": ORIGIN_ORDER},\n                  labels=LABELS,\n                  template=\"plotly_white\",\n                  )\n\nfig1.show()"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#plot-2-animated-bubble-chart",
+    "href": "Demo/plotly-python.html#plot-2-animated-bubble-chart",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Plot 2: Animated bubble chart",
+    "text": "Plot 2: Animated bubble chart\n\nTarget: target-plots/plot-2_python_animated-scatter.html\nYou will practice: bubble sizes, animation with a play button and slider\n\nWhat to reproduce\n\nhorsepower on the x axis, mpg on the y axis, colored by origin\nBubble size set by displacement\nOne animation frame per model_year, with a play button and slider\nAxes stay fixed while it plays: x from 40 to 240, y from 5 to 50\n\nHints\n\nNew arguments for px.scatter(): size=\"displacement\", animation_frame=\"model_year\"\nFix the axes with range_x=[40, 240] and range_y=[5, 50]. Try leaving them out and pressing play to see why they matter\nKeep hover_name=\"name\" from Plot 1\nDocs: Animations\n\n\n# Plot 2: your code here\n\nfig2 = px.scatter(cars, x = \"horsepower\", y = \"mpg\",\n                 range_x=[40,240],\n                 range_y=[5,50],\n                 color = \"origin\",\n                 size = \"displacement\",\n                 hover_name = \"name\",\n                 animation_frame= \"model_year\",\n                 color_discrete_map=ORIGIN_COLORS,\n                 category_orders={\"origin\": ORIGIN_ORDER},\n                 labels=LABELS,\n                 template=\"plotly_white\",\n                 title = \"Fuel Economy vs. Horsepower by Model Year\",\n                 )\n\nfig2.show()"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#plot-3-violin-plots",
+    "href": "Demo/plotly-python.html#plot-3-violin-plots",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Plot 3: Violin plots",
+    "text": "Plot 3: Violin plots\n\nTarget: target-plots/plot-3_python_violin.html\nYou will practice: distribution plots, box plots inside violins, showing every point\n\nWhat to reproduce\n\nOne violin of mpg for each origin, each a different color\nA small box plot inside each violin\nAll the individual cars shown as points beside each violin, with the car name on hover\n\nHints\n\nStart with fig3 = px.violin(cars, x=\"origin\", y=\"mpg\", color=\"origin\")\nbox=True adds the box plots, and points=\"all\" shows every car\nDocs: Violin plots\n\n\n# Plot 3: your code here\n\nfig3 = px.violin(cars, x = \"origin\", y = \"mpg\",\n                 color = \"origin\",\n                 box = True,\n                 points = \"all\",\n                 hover_name = \"name\",\n                 color_discrete_map=ORIGIN_COLORS,\n                 category_orders={\"origin\": ORIGIN_ORDER},\n                 labels=LABELS,\n                 template=\"plotly_white\",\n                 title = \"Fuel Economy by Region of Origin\",\n                 )\n\n\nfig3.show()"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#plot-4-line-chart-with-a-range-slider",
+    "href": "Demo/plotly-python.html#plot-4-line-chart-with-a-range-slider",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Plot 4: Line chart with a range slider",
+    "text": "Plot 4: Line chart with a range slider\n\nTarget: target-plots/plot-4_python_line-rangeslider.html\nYou will practice: summarizing data first, line charts, range sliders\n\nWhat to reproduce\n\nThe average mpg for each model year and origin, one line per origin with markers\nA range slider under the x axis. Drag its ends to zoom in on a range of years\n\nHints\n\nFirst compute the averages. This line is given to you:\nyearly = cars.groupby([\"model_year\", \"origin\"], as_index=False)[\"mpg\"].mean()\nThen plot the new yearly data frame: fig4 = px.line(yearly, x=\"model_year\", y=\"mpg\", color=\"origin\", markers=True, ...)\nAdd the slider after creating the figure: fig4.update_xaxes(rangeslider_visible=True)\nDocs: Line charts, Range slider\n\n\n# Plot 4: your code here\n\nyearly = cars.groupby([\"model_year\", \"origin\"],\n                      as_index = False)[\"mpg\"].mean()\n\nfig4 = px.line(yearly, x = \"model_year\", y = \"mpg\",\n               color = \"origin\",\n               markers = True,\n               color_discrete_map=ORIGIN_COLORS,\n               category_orders={\"origin\": ORIGIN_ORDER},\n               labels=LABELS,\n               template=\"plotly_white\", \n               title = \"Average Fuel Economy by Model Year\",\n               )\n\nfig4.update_xaxes(rangeslider_visible=True)\n\nfig4.show()"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#bonus-a-dropdown-menu-with-graph-objects",
+    "href": "Demo/plotly-python.html#bonus-a-dropdown-menu-with-graph-objects",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Bonus A: dropdown menu with graph objects",
+    "text": "Bonus A: dropdown menu with graph objects\nOptional, worth 1 bonus point. Skip it if you like; leave the cell empty or delete it.\n\nTarget: target-plots/bonus-A_python_dropdown-menu.html\nYou will practice: plotly.graph_objects, building traces yourself, dropdown menus\n\nWhat to reproduce\n\nThe same yearly averages as Plot 4, but for mpg, horsepower, and weight\nBuilt with plotly.graph_objects, not Plotly Express: one go.Scatter trace per origin\nA dropdown menu at the top right that switches the lines between the three variables and updates the y axis title\nHovering on a year shows all three origins in one box\n\nHints\n\nThis one is a step up, and it is optional. Plotly Express builds traces for you; here you build them yourself.\nAverages: cars.groupby([\"model_year\", \"origin\"], as_index=False)[[\"mpg\", \"horsepower\", \"weight\"]].mean()\nBuild the figure: import plotly.graph_objects as go, figA = go.Figure(), then loop over ORIGIN_ORDER and call figA.add_trace(go.Scatter(x=..., y=..., name=origin, mode=\"lines+markers\", line=dict(color=ORIGIN_COLORS[origin])))\nA dropdown is a list of buttons in figA.update_layout(updatemenus=[dict(buttons=[...])]). Each button replaces the y data of all three traces (in order) and changes the axis title:\ndict(label=\"Horsepower\", method=\"update\",\n     args=[{\"y\": [usa_values, europe_values, japan_values]},\n           {\"yaxis.title.text\": \"Horsepower\"}])\nCombined hover: hovermode=\"x unified\" in update_layout\nDocs: Graph objects, Dropdown menus\n\n\n# Plot A: your code here\n\nimport plotly.graph_objects as go\n\nAverages = cars.groupby(\n    [\"model_year\", \"origin\"], \n    as_index=False\n    )[[\"mpg\", \"horsepower\", \"weight\"]].mean()\n\nfigA = go.Figure()\n\nfor origin in ORIGIN_ORDER:\n    subset = Averages[Averages[\"origin\"] == origin]\n\n    figA.add_trace(\n        go.Scatter(x = subset[\"model_year\"], y = subset[\"mpg\"],\n                   name = origin,\n                   mode = \"lines+markers\",\n                   line = dict(color=ORIGIN_COLORS[origin]),\n                   )\n                   ) \n\nfigA.update_layout(updatemenus=[\n    dict(\n        x=1,\n        xanchor=\"right\",\n        y=1.15,\n        yanchor=\"top\",\n        buttons=[\n    dict(\n         label = \"Fuel economy (mpg)\", method = \"update\",\n         args=[\n             {\"y\": [Averages[Averages[\"origin\"] == origin][\"mpg\"]\n              for origin in ORIGIN_ORDER\n              ]},\n             {\"yaxis.title.text\": \"Fuel economy (mpg)\"}\n             ]\n             ), \n     dict(\n         label = \"Horsepower\", method = \"update\",\n           args=[\n               {\"y\": [Averages[Averages[\"origin\"] == origin][\"horsepower\"]\n              for origin in ORIGIN_ORDER\n              ]},\n               {\"yaxis.title.text\": \"Horsepower\"}\n               ]\n               ),\n     dict(\n            label = \"Vehicle weight (lb)\", method = \"update\",\n            args=[\n                {\"y\": [Averages[Averages[\"origin\"] == origin][\"weight\"]\n              for origin in ORIGIN_ORDER\n              ]},\n                {\"yaxis.title.text\": \"Vehicle weight (lb)\"}\n                ]\n            ),\n            ]   \n        )\n    ],\n    xaxis_title = \"Model year\",\n    hovermode = \"x unified\",\n    template = \"plotly_white\"\n)\n\nfigA.show()"
+  },
+  {
+    "objectID": "Demo/plotly-python.html#submission",
+    "href": "Demo/plotly-python.html#submission",
+    "title": "Plotly Assignment, Part 1: Python",
+    "section": "Submission",
+    "text": "Submission\n\nRestart the kernel and run all cells. Every plot must appear below its code cell with no errors.\nPut your name in the author field of the first (raw) cell and save.\nOpen a terminal in the assignment folder and run:\nquarto render plotly-python.ipynb\nThis creates plotly-python.html with your plots embedded in it.\nOpen plotly-python.html in your browser and check that all your plots appear and are interactive.\nSubmit both plotly-python.ipynb and plotly-python.html."
   }
 ]
