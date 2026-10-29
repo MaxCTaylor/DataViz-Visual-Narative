@@ -1,5 +1,7 @@
 ---
 title: "DataViz.Narrative"
+author: Maxwell Taylor
+date: today
 ---
 
 Good morning
