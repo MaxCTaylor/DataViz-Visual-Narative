@@ -20,5 +20,12 @@ format:
     toc: true
     embed-resources: true
 
+execute:
+  echo: false
+  warning: false
+  error: true
+  cache: true
+  freeze: true
+
 
 
