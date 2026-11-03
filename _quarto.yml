@@ -25,7 +25,7 @@ execute:
   warning: false
   error: true
   cache: true
-  freeze: true
+  freeze: auto
 
 
 
