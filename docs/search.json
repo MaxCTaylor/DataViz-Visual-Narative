@@ -103,5 +103,201 @@
     "title": "Plotly Assignment, Part 1: Python",
     "section": "Submission",
     "text": "Submission\n\nRestart the kernel and run all cells. Every plot must appear below its code cell with no errors.\nPut your name in the author field of the first (raw) cell and save.\nOpen a terminal in the assignment folder and run:\nquarto render plotly-python.ipynb\nThis creates plotly-python.html with your plots embedded in it.\nOpen plotly-python.html in your browser and check that all your plots appear and are interactive.\nSubmit both plotly-python.ipynb and plotly-python.html."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html",
+    "href": "Demo/lecture-notes.out.html",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "",
+    "text": "Streamlit first · Dash as optional supplemental material\nLecture 1 of 2: The next packet introduces Shiny in R."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#where-does-a-visualization-run",
+    "href": "Demo/lecture-notes.out.html#where-does-a-visualization-run",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Where does a visualization run?",
+    "text": "Where does a visualization run?\n\n\nStatic graphic: rendered once; export a PNG, SVG, or PDF (Matplotlib, Seaborn, ggplot2).\nClient-side interactive graphic: browser handles zoom, hover, and selection (Plotly.js, Vega-Lite).\nServer-backed data app: browser controls trigger Python/R calculations, queries, or models (Streamlit, Dash, Shiny).\nThese categories overlap: a Streamlit app can display an interactive Plotly chart."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#the-internet-in-one-picture",
+    "href": "Demo/lecture-notes.out.html#the-internet-in-one-picture",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "The internet in one picture",
+    "text": "The internet in one picture\n\n\nA browser (client) requests a page from a web server.\nThe server returns HTML, CSS, JavaScript, and possibly data.\nThe browser displays the page; later interactions may or may not require another server request.\nHistorical diagram note: Java applets are obsolete; modern web apps generally use JavaScript and web APIs."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#frontend-vs.-backend",
+    "href": "Demo/lecture-notes.out.html#frontend-vs.-backend",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Frontend vs. backend",
+    "text": "Frontend vs. backend\n\n\nFrontend (browser): what users see and click; HTML/CSS/JavaScript.\nBackend (server): Python/R code that loads data, runs models, queries databases, and returns results.\nA server can be your own laptop during development—not necessarily a cloud machine.\nStreamlit hides much of the web plumbing, but a server process still runs Python."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#compare-plotly-html-vs.-a-streamlit-app",
+    "href": "Demo/lecture-notes.out.html#compare-plotly-html-vs.-a-streamlit-app",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Compare: Plotly HTML vs. a Streamlit app",
+    "text": "Compare: Plotly HTML vs. a Streamlit app\n\n\n\n\n\n\n\n\nQuestion\nStandalone Plotly HTML\nStreamlit app\n\n\n\n\nWhere does interaction happen?\nMostly in browser\nBrowser and Python server\n\n\nHover, zoom, toggle traces?\nYes\nYes (via embedded Plotly chart)\n\n\nRe-run Python after a widget changes?\nNo\nYes\n\n\nQuery a database or score a model on demand?\nNot without another service\nYes, from Python\n\n\nShare as a static file?\nOften yes\nRequires running app server\n\n\n\nKey idea: A Plotly chart can be interactive without a Python backend. A Streamlit app can recompute its data and charts when inputs change."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#a-concrete-example-exploring-sales",
+    "href": "Demo/lecture-notes.out.html#a-concrete-example-exploring-sales",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "A concrete example: exploring sales",
+    "text": "A concrete example: exploring sales\nClient-side-only: A user hovers over a precomputed sales chart or hides a product series.\nServer-backed: A user chooses a region → Python filters millions of records (or queries a database) → computes a new forecast → sends updated results to the browser.\n\nA backend unlocks fresh data, expensive computation, authentication, and coordinated controls.\nTradeoff: hosting, latency, cost, and security become important."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#how-a-server-backed-visualization-works",
+    "href": "Demo/lecture-notes.out.html#how-a-server-backed-visualization-works",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "How a server-backed visualization works",
+    "text": "How a server-backed visualization works\nBrowser                     Python server\n[Choose a region] --------&gt; [Read selection]\n                            [Filter / query data]\n                            [Compute / fit model]\n[Updated chart] &lt;---------- [Return results]\n\nThe UI collects inputs and presents outputs.\nThe server does work that cannot be packaged as a self-contained HTML chart.\nA browser is still responsible for rendering the final visualization."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#server-side-ecosystem-python-and-r",
+    "href": "Demo/lecture-notes.out.html#server-side-ecosystem-python-and-r",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Server-side ecosystem: Python and R",
+    "text": "Server-side ecosystem: Python and R\n\n\n\n\n\n\n\n\nLanguage\nTools\nTypical strengths\n\n\n\n\nPython\nStreamlit\nFast, Python-first analytical apps\n\n\nPython\nDash\nExplicit layouts and callback-driven apps\n\n\nPython\nPanel, Voilà, Gradio\nNotebook/model interfaces and custom apps\n\n\nR\nShiny\nReactive analytical apps with R\n\n\nR\nQuarto dashboards + Shiny\nReporting with optional server interactivity\n\n\n\n\nBoth ecosystems can embed Plotly and other interactive chart libraries.\nBI platforms (Power BI, Tableau) emphasize managed reporting; frameworks emphasize custom behavior and computation."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#hosting-where-does-the-backend-live",
+    "href": "Demo/lecture-notes.out.html#hosting-where-does-the-backend-live",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Hosting: where does the backend live?",
+    "text": "Hosting: where does the backend live?\n\nLocal: run on your laptop for development; browser connects to localhost.\nHosted: deploy to an appropriate cloud/app platform so others can open a URL.\nHosting must keep the Python/R process running and provide required packages and data access.\nPublic hosting is not automatically private: avoid committing passwords, tokens, or sensitive datasets.\nContainerization (e.g., Docker) can help package dependencies, but is not needed for our first app."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#agentic-coding-another-way-to-build-data-apps",
+    "href": "Demo/lecture-notes.out.html#agentic-coding-another-way-to-build-data-apps",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Agentic coding: another way to build data apps",
+    "text": "Agentic coding: another way to build data apps\n\nAI coding assistants can help plan, generate, run, debug, and revise application code.\nA prompt might be: “Build a Streamlit dashboard that filters a CSV and plots sales by month.”\nThis can speed up prototyping and let analysts explore unfamiliar frameworks.\nIt does not remove the need to understand data, logic, and deployment."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#working-responsibly-with-ai-generated-applications",
+    "href": "Demo/lecture-notes.out.html#working-responsibly-with-ai-generated-applications",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Working responsibly with AI-generated applications",
+    "text": "Working responsibly with AI-generated applications\n\nStart with a clear specification: dataset, inputs, expected outputs, and audience.\nRun locally; inspect the code; verify chart values against known examples.\nCheck dependencies, secrets, data permissions, and error handling.\nAsk the assistant to explain each component and simplify unfamiliar code.\nTakeaway: AI is a collaborator, not a substitute for validation. We may revisit full app-building workflows later in the course."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#what-is-streamlit",
+    "href": "Demo/lecture-notes.out.html#what-is-streamlit",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "What is Streamlit?",
+    "text": "What is Streamlit?\n\nStreamlit is an open-source Python framework for making interactive data applications.\nWrite ordinary Python scripts with functions such as st.title(), st.slider(), and st.plotly_chart().\nStreamlit supplies the browser interface and runs your Python code on a server.\nGreat for prototypes, course projects, exploratory dashboards, and model demos.\n\nMental model: write a Python script that describes the page."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#install-and-launch",
+    "href": "Demo/lecture-notes.out.html#install-and-launch",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Install and launch",
+    "text": "Install and launch\nFrom a terminal in your project directory:\npython -m pip install streamlit pandas plotly\nCreate a file called app.py. Run:\nstreamlit run app.py\n\nOpen the local URL printed in the terminal (typically http://localhost:8501).\nSave edits to app.py; Streamlit can rerun the app.\nImportant: Run a Streamlit app from a terminal—not as a normal Jupyter code cell."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#first-app-text-and-a-table",
+    "href": "Demo/lecture-notes.out.html#first-app-text-and-a-table",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "First app: text and a table",
+    "text": "First app: text and a table\nSave this as app.py:\nimport streamlit as st\nimport pandas as pd\n\nst.title(\"My first data app\")\nst.write(\"Explore a tiny dataset with Python.\")\n\ndata = pd.DataFrame({\"month\": [\"Jan\", \"Feb\", \"Mar\"],\n                     \"sales\": [120, 150, 135]})\nst.dataframe(data)\n\nst.title() creates a heading.\nst.write() displays text or many Python objects.\nst.dataframe() provides a scrollable, interactive table."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#add-a-widget-the-slider",
+    "href": "Demo/lecture-notes.out.html#add-a-widget-the-slider",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Add a widget: the slider",
+    "text": "Add a widget: the slider\nimport streamlit as st\n\nst.title(\"Interactive input\")\nminimum_sales = st.slider(\"Minimum sales\", 0, 200, 100)\nst.write(\"Selected threshold:\", minimum_sales)\n\nst.slider() returns the user’s chosen value.\nChanging a widget typically reruns the Python script from top to bottom.\nThe widget’s current value is available on each rerun."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#connect-an-input-to-a-visualization",
+    "href": "Demo/lecture-notes.out.html#connect-an-input-to-a-visualization",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Connect an input to a visualization",
+    "text": "Connect an input to a visualization\nimport pandas as pd\nimport plotly.express as px\nimport streamlit as st\n\nsales = pd.DataFrame({\n    \"month\": [\"Jan\", \"Feb\", \"Mar\", \"Apr\"],\n    \"sales\": [120, 150, 135, 180],\n})\nthreshold = st.slider(\"Minimum sales\", 0, 200, 100)\nfiltered = sales[sales[\"sales\"] &gt;= threshold]\n\nfig = px.bar(filtered, x=\"month\", y=\"sales\", title=\"Monthly sales\")\nst.plotly_chart(fig, use_container_width=True)\nNotice: Python filters the data; Plotly handles chart interactions in the browser."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#a-complete-small-dashboard",
+    "href": "Demo/lecture-notes.out.html#a-complete-small-dashboard",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "A complete small dashboard",
+    "text": "A complete small dashboard\nimport pandas as pd\nimport plotly.express as px\nimport streamlit as st\n\nst.title(\"Sales explorer\")\ndf = pd.DataFrame({\"region\": [\"East\", \"East\", \"West\", \"West\"],\n                   \"month\": [\"Jan\", \"Feb\", \"Jan\", \"Feb\"],\n                   \"sales\": [120, 160, 90, 140]})\nregion = st.selectbox(\"Region\", sorted(df[\"region\"].unique()))\nview = df[df[\"region\"] == region]\nst.metric(\"Total sales\", f\"${view['sales'].sum():,.0f}\")\nst.plotly_chart(px.bar(view, x=\"month\", y=\"sales\"),\n                use_container_width=True)\nst.dataframe(view)\n\nOne selection drives a metric, chart, and table.\nThis is a server-backed dashboard, even though its dataset is small."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#layout-organize-a-dashboard",
+    "href": "Demo/lecture-notes.out.html#layout-organize-a-dashboard",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Layout: organize a dashboard",
+    "text": "Layout: organize a dashboard\nimport streamlit as st\n\nst.set_page_config(page_title=\"Explorer\", layout=\"wide\")\nst.title(\"Explorer\")\n\nwith st.sidebar:\n    year = st.selectbox(\"Year\", [2024, 2025, 2026])\n\nleft, right = st.columns(2)\nwith left:\n    st.metric(\"Selected year\", year)\nwith right:\n    st.info(\"Place a chart or table here.\")\n\nSidebar: controls that affect the whole page.\nColumns: place related outputs side by side.\nst.set_page_config() belongs near the beginning of the script."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#loading-your-own-data",
+    "href": "Demo/lecture-notes.out.html#loading-your-own-data",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Loading your own data",
+    "text": "Loading your own data\nimport pandas as pd\nimport streamlit as st\n\nuploaded = st.file_uploader(\"Choose a CSV\", type=\"csv\")\nif uploaded is not None:\n    df = pd.read_csv(uploaded)\n    st.write(\"Rows:\", len(df))\n    st.dataframe(df.head())\nelse:\n    st.info(\"Upload a CSV to begin.\")\n\nFiles are supplied by the user through the browser.\nValidate file types, column names, and missing values before plotting.\nDo not assume that a shared app’s uploads are appropriate for sensitive data."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#streamlits-rerun-model",
+    "href": "Demo/lecture-notes.out.html#streamlits-rerun-model",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Streamlit’s rerun model",
+    "text": "Streamlit’s rerun model\n\nThe script normally runs top to bottom when a user changes a widget.\nWidget values are re-created from the current browser session.\nThis makes small apps simple, but repeated data loading can be slow.\nAsk: Which operations should happen on every interaction?"
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#build-a-useful-app-checklist",
+    "href": "Demo/lecture-notes.out.html#build-a-useful-app-checklist",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Build a useful app: checklist",
+    "text": "Build a useful app: checklist\n\nIdentify the question the dashboard should answer.\nLoad and validate the dataset.\nAdd one meaningful control (region, year, category).\nCompute a filtered view in Python.\nDisplay a chart and a summary metric.\nTest extreme selections and empty results.\nShare the app only after checking its data and access permissions."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#knowledge-check",
+    "href": "Demo/lecture-notes.out.html#knowledge-check",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Knowledge check",
+    "text": "Knowledge check\n\nIf you export a Plotly figure to HTML, does it require a running Python server to hover and zoom?\nWhat changes when a Streamlit slider is moved?\nWhy might a server-backed dashboard be more powerful than a static HTML report?\nWhat additional responsibility appears when an app is deployed publicly?"
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#cache-expensive-work",
+    "href": "Demo/lecture-notes.out.html#cache-expensive-work",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Cache expensive work",
+    "text": "Cache expensive work\nimport pandas as pd\nimport streamlit as st\n\n@st.cache_data\ndef load_data(path):\n    return pd.read_csv(path)\n\ndf = load_data(\"sales.csv\")\nst.dataframe(df.head())\n\nst.cache_data is for reusable data results; cache entries can be shared across sessions.\nUse st.cache_resource for reusable resources such as model objects or connections.\nChoose caching carefully when data changes or contains user-specific information."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#remember-values-across-reruns",
+    "href": "Demo/lecture-notes.out.html#remember-values-across-reruns",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Remember values across reruns",
+    "text": "Remember values across reruns\nimport streamlit as st\n\nif \"clicks\" not in st.session_state:\n    st.session_state.clicks = 0\n\nif st.button(\"Count a click\"):\n    st.session_state.clicks += 1\n\nst.write(\"Clicks in this session:\", st.session_state.clicks)\n\nst.session_state retains values for a user session across reruns.\nForms, tabs, multipage navigation, and callbacks offer additional control."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#deployment-and-reproducibility",
+    "href": "Demo/lecture-notes.out.html#deployment-and-reproducibility",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Deployment and reproducibility",
+    "text": "Deployment and reproducibility\n\nKeep app.py and a dependency file (such as requirements.txt) together.\nTest locally from a clean environment before publishing.\nUse a Streamlit-compatible hosting service or your own server/container.\nStore secrets using platform-supported secret management—not in Git.\nCheck server logs, package versions, data access, and user permissions."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#where-dash-fits",
+    "href": "Demo/lecture-notes.out.html#where-dash-fits",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Where Dash fits",
+    "text": "Where Dash fits\n\nDash is a Python framework from Plotly for interactive web applications.\nUses explicit layout components and callbacks to connect inputs to outputs.\nOften useful when you want more precise control over how UI events update specific outputs.\nStreamlit usually offers a shorter path to a first analytical dashboard.\nBoth require a running Python app server for server-side functionality."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#minimal-dash-example",
+    "href": "Demo/lecture-notes.out.html#minimal-dash-example",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Minimal Dash example",
+    "text": "Minimal Dash example\nInstall: python -m pip install dash plotly\nfrom dash import Dash, dcc, html, Input, Output\nimport plotly.express as px\n\napp = Dash(__name__)\napp.layout = html.Div([\n    dcc.Slider(1, 5, 1, id=\"minimum\"),\n    dcc.Graph(id=\"chart\"),\n])\n\n@app.callback(Output(\"chart\", \"figure\"), Input(\"minimum\", \"value\"))\ndef update_chart(minimum):\n    df = px.data.iris()\n    return px.scatter(df[df.sepal_length &gt;= minimum],\n                      x=\"sepal_width\", y=\"sepal_length\",\n                      color=\"species\")\n\nif __name__ == \"__main__\":\n    app.run(debug=True)\nRun: python app.py. The callback connects slider changes to the figure."
+  },
+  {
+    "objectID": "Demo/lecture-notes.out.html#further-reading",
+    "href": "Demo/lecture-notes.out.html#further-reading",
+    "title": "Server-Side Visualization Tools in Python",
+    "section": "Further reading",
+    "text": "Further reading\n\nStreamlit documentation\nStreamlit API reference\nPlotly Python documentation\nDash documentation\n\nNext lecture: Shiny applies the same client/server ideas using R and a reactive programming model."
   }
 ]

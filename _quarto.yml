@@ -9,7 +9,11 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - Demo\plotly-python.ipynb #needs path, about.qmd is in the same folder
+      - text: Demos
+        menu:
+        - Demo\plotly-python.ipynb #needs path, about.qmd is in the same folder
+        - Demo\lecture-notes.out.ipynb
+        - Demo\app.py
 
 format:
   html:
