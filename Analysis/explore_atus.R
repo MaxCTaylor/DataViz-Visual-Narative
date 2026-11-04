@@ -18,6 +18,9 @@ library(plotly)
 
 # Import data
 
+
+# Import data
+
 atus_summary <- read_csv(
   "Analysis/data/raw/atussum_0325.dat",
   col_types = cols(
@@ -25,3 +28,20 @@ atus_summary <- read_csv(
     .default = col_guess()
   )
 )
+
+atus_resp <- read_csv(
+  "Analysis/data/raw/atusresp_0325.dat",
+  col_types = cols(
+    TUCASEID = col_character(),
+    .default = col_guess()
+  )
+)
+
+atus_act <- read_csv(
+  "Analysis/data/raw/atusact_0325.dat",
+  col_types = cols(
+    TUCASEID = col_character(),
+    .default = col_guess()
+  )
+)
+
