@@ -299,5 +299,537 @@
     "title": "Plotly Assignment, Part 1: Python",
     "section": "Submission",
     "text": "Submission\n\nRestart the kernel and run all cells. Every plot must appear below its code cell with no errors.\nPut your name in the author field of the first (raw) cell and save.\nOpen a terminal in the assignment folder and run:\nquarto render plotly-python.ipynb\nThis creates plotly-python.html with your plots embedded in it.\nOpen plotly-python.html in your browser and check that all your plots appear and are interactive.\nSubmit both plotly-python.ipynb and plotly-python.html."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html",
+    "href": "Demo/Shiny-demo.html",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "",
+    "text": "From a first app to a published dashboard, all in R"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#todays-roadmap",
+    "href": "Demo/Shiny-demo.html#todays-roadmap",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Today’s roadmap",
+    "text": "Today’s roadmap\n\nGetting started with Shiny: what it is, how an app is built, how to run it\nWhat is a dashboard? and why some dashboards need a server\nDashboards with bslib: modern layouts with very little code\nDemo: a fuel economy dashboard, then sharing it with the world\n\nEverything is in the lecture folder:\nshiny-lecture/\n├── shiny-lecture.ipynb        &lt;- these notes\n├── apps/\n│   ├── 01-hello-shiny/        &lt;- first app\n│   ├── 02-mpg-explorer/       &lt;- more widgets, more reactivity\n│   ├── 03-hello-bslib/        &lt;- first dashboard\n│   └── 04-mpg-dashboard/      &lt;- final product\n└── images/\nDownload the example apps\nHere are nine slides for the front of the lecture. Each cell starts with a ## header, so you can split them into separate notebook cells where you like.\nOne small terminology point: when you run an app locally, Shiny starts a real web server, a small program running on your own computer, rather than a “virtual” one. The slides call it a “local server,” which keeps the idea you wanted.\n# How the Web Works: Clients and Servers\n\nThe big picture behind every web app\n\n## Clients and servers\n\nEvery time you use the web, two sides are talking:\n\n- **Client:** the program that *asks* for something (usually your web browser)\n- **Server:** the program that *answers* (sends back a page, data, or a result)\n\n**Restaurant analogy**\n\n| Restaurant | Web |\n|---|---|\n| Customer places an order | Browser sends a **request** |\n| Kitchen prepares the food | Server does the work |\n| Waiter brings the plate | Server sends a **response** |\n\n- You never see the kitchen, only the plate\n- Each click, search, or slider move can be a new request\n\n## A server is a program, not just a machine\n\n- \"Server\" often means a big computer in a data center, but strictly it is **software that listens for requests and answers them**\n- Any computer can run a server, **including your laptop**\n- One computer can run many servers at once\n\n**Examples**\n\n- Google's servers answer searches\n- Canvas's servers send your grades and assignments\n- Your laptop running a Shiny app: also a server\n\n## Client-side vs. server-side tools\n\n**Where does the work happen?**\n\n| | Client-side | Server-side |\n|---|---|---|\n| Runs on | The viewer's browser | A server somewhere else |\n| Examples | Plotly charts, Quarto websites, JavaScript | Shiny, Google search, online banking |\n| Data | Sent to the browser in full | Stays on the server |\n| Needs a running server? | No, just files to download | Yes, always on |\n| Good for | Static sites, light interactivity | Live data, big data, computation, privacy |\n\n- **Client-side:** the server hands over the files once, then your browser does everything\n- **Server-side:** the browser keeps asking the server to do new work\n\n## IP addresses: how computers find each other\n\n- Every device on a network has an **IP address**, like a mailing address for computers\n- Example: `142.250.80.46` (one of Google's servers)\n- Names like `google.com` are translated into IP addresses for you, like looking up a phone number in a contact list\n\n**Two special kinds**\n\n- **Public IP:** reachable from the internet (a website's server)\n- **Private IP:** only reachable inside your home or campus network (for example `192.168.1.25`)\n\n## Ports: which program on the computer?\n\n- One computer can run many servers at once, so an IP address alone is not enough\n- A **port** is a numbered door on that computer, and each server listens at its own door\n\n**Analogy:** the IP address is the apartment building, the port is the apartment number\n\n| Port | Typical use |\n|---|---|\n| 80 | Regular websites (`http`) |\n| 443 | Secure websites (`https`) |\n| 8080, 3838, random numbers | Development servers, like a local Shiny app |\n\nA full address looks like this: `http://142.250.80.46:443`\n\n## localhost: your computer talking to itself\n\n- **`localhost`** is a special name that always means **\"this computer\"**\n- Its IP address is always **`127.0.0.1`**\n- Requests to localhost never leave your machine; there is no internet involved\n- Other people **cannot** open your localhost address, because on their computer it points to *their* machine\n\n&gt; `localhost` is like writing \"me\" as the address on a letter: it always comes back to you.\n\n## Running a Shiny app locally\n\nWhen you click **Run App**, R does three things:\n\n1. Starts a small **web server** inside your R session\n2. Picks a **port** and listens on `127.0.0.1`\n3. Opens your browser (the **client**) at that address\n\n```\nListening on http://127.0.0.1:4321\n```\n\n| Piece | Who plays it |\n|---|---|\n| Client | Your web browser |\n| Server | Your R session |\n| Address | `127.0.0.1` (localhost) |\n| Port | `4321` (changes each run unless you choose one) |\n\n- Client and server are on the **same computer**, but they still talk over the web, exactly like a real website\n- This is why your R console is busy: it is serving the app\n\n## Local vs. deployed\n\n**Local (today)**\n\n- The server is your laptop, at `127.0.0.1`\n- Only you can open the app\n- It stops when you close R or your laptop\n\n**Deployed (end of lecture)**\n\n- The server is an always-on computer with a public address\n- Anyone with the link can open the app, for example `https://your-name.shinyapps.io/my-app/`\n- Same app code, it just lives on a different server\n\n&gt; Deploying = moving the server from your laptop to a computer the whole internet can reach.\nThe “Local vs. deployed” slide sets up the deployment section at the end, so you can point back to it there."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#setup-check",
+    "href": "Demo/Shiny-demo.html#setup-check",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Setup check",
+    "text": "Setup check\nInstall once (from the R console):\ninstall.packages(c(\"shiny\", \"bslib\", \"ggplot2\", \"dplyr\"))\nThen confirm the versions:\n\n\n[1] '1.14.0'\n\n\n[1] '0.12.0'\n\n\n\nAny recent version works; bslib 0.6 or newer is needed for Part 3\nIn RStudio, opening an app.R file will also prompt you to install Shiny if it is missing"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#what-is-shiny",
+    "href": "Demo/Shiny-demo.html#what-is-shiny",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "What is Shiny?",
+    "text": "What is Shiny?\n\nAn R package for building interactive web apps using only R\nNo HTML, CSS, or JavaScript required (but you can add them later)\nYour R code runs behind the page and responds to the user’s clicks\nMade by Posit (the company behind RStudio)\n\nCommon uses\n\nData exploration tools for people who do not code\nDashboards that monitor something over time\nTeaching apps: “move the slider and watch what happens”\nFront ends for models: enter values, get a prediction"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#try-it-before-we-build-it",
+    "href": "Demo/Shiny-demo.html#try-it-before-we-build-it",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Try it before we build it",
+    "text": "Try it before we build it\nShiny ships with built-in example apps. Run these in your R console:\nlibrary(shiny)\nrunExample()               # lists all examples\nrunExample(\"01_hello\")     # a slider that controls a histogram\nrunExample(\"06_tabsets\")   # inputs plus tabs\n\nA browser window opens with a live app\nPress Esc (RStudio) or Ctrl + C (terminal) to stop it\nNotice: while the app runs, your R console is busy. It is serving the app."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#anatomy-of-a-shiny-app",
+    "href": "Demo/Shiny-demo.html#anatomy-of-a-shiny-app",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Anatomy of a Shiny app",
+    "text": "Anatomy of a Shiny app\nEvery app has exactly two parts plus one line that connects them.\n\n\n\n\n\n\n\n\n\n\nUI (user interface): layout, inputs, and empty placeholders for outputs\nServer: a function that turns inputs into outputs\nshinyApp(ui, server): launches the app"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#your-first-app",
+    "href": "Demo/Shiny-demo.html#your-first-app",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Your first app",
+    "text": "Your first app\nCreate a folder 01-hello-shiny/ with one file named exactly app.R:\n# ------------------------------------------------------------\n# App 1: Hello, Shiny!\n# The smallest useful Shiny app: two inputs, two outputs.\n#\n# Run it:\n#   RStudio:       open this file and click \"Run App\"\n#   R console:     shiny::runApp(\"01-hello-shiny\")\n#   Command line:  Rscript -e 'shiny::runApp(\"01-hello-shiny\", launch.browser = TRUE)'\n# ------------------------------------------------------------\n\nlibrary(shiny)\n\n# ---- UI: what the user sees ---------------------------------\nui &lt;- fluidPage(\n  titlePanel(\"Hello, Shiny!\"),\n\n  sidebarLayout(\n    sidebarPanel(\n      textInput(\"name\", \"What is your name?\", value = \"student\"),\n      sliderInput(\"n\", \"Number of random points:\",\n                  min = 10, max = 1000, value = 100)\n    ),\n\n    mainPanel(\n      textOutput(\"greeting\"),\n      plotOutput(\"hist\")\n    )\n  )\n)\n\n# ---- Server: the logic behind the page ----------------------\nserver &lt;- function(input, output, session) {\n\n  # Re-runs whenever input$name changes\n  output$greeting &lt;- renderText({\n    paste0(\"Hello, \", input$name, \"! Here are \", input$n, \" random numbers.\")\n  })\n\n  # Re-runs whenever input$n changes\n  output$hist &lt;- renderPlot({\n    hist(rnorm(input$n),\n         col = \"steelblue\", border = \"white\",\n         main = \"Histogram of random values\", xlab = \"Value\")\n  })\n}\n\n# ---- Connect the two ----------------------------------------\nshinyApp(ui = ui, server = server)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#what-it-looks-like",
+    "href": "Demo/Shiny-demo.html#what-it-looks-like",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "What it looks like",
+    "text": "What it looks like\n\n\n\nApp 1: Hello, Shiny!\n\n\n\nType a name: the greeting updates\nMove the slider: the greeting and the histogram update\nWe never wrote “when the slider moves, redraw the plot”. Shiny figured it out."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#app-file-structure",
+    "href": "Demo/Shiny-demo.html#app-file-structure",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "App file structure",
+    "text": "App file structure\nOne-file app (recommended)\n01-hello-shiny/\n└── app.R          # ui, server, and shinyApp() together\nTwo-file app (older style, still common online)\nmy-app/\n├── ui.R           # just the ui\n└── server.R       # just the server function\nRules of thumb\n\nOne app per folder\nThe file must be named app.R (or ui.R + server.R) for Run App to work\nData files the app needs go inside that folder"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#running-an-app-rstudio",
+    "href": "Demo/Shiny-demo.html#running-an-app-rstudio",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Running an app: RStudio",
+    "text": "Running an app: RStudio\n\nOpen app.R\nClick Run App (green play button, top of the editor)\nUse the small dropdown next to it to choose where it opens:\n\nRun in Window: a separate RStudio window\nRun in Viewer Pane: inside RStudio\nRun External: your web browser\n\n\nStop it: click the red stop sign in the console, or press Esc\nTip: after editing app.R, just click Reload App. No need to restart."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#running-an-app-r-console",
+    "href": "Demo/Shiny-demo.html#running-an-app-r-console",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Running an app: R console",
+    "text": "Running an app: R console\nThe same thing, typed instead of clicked:\nlibrary(shiny)\n\n# Run an app folder (path is relative to your working directory)\nrunApp(\"apps/01-hello-shiny\")\n\n# Open in your browser and pick a port\nrunApp(\"apps/01-hello-shiny\", launch.browser = TRUE, port = 8080)\n\nThe console prints Listening on http://127.0.0.1:8080\nThat address is a web server running on your own computer\nPaste it into any browser on this machine to view the app\nWorks the same in RStudio, VS Code, Positron, or plain R"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#running-an-app-command-line",
+    "href": "Demo/Shiny-demo.html#running-an-app-command-line",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Running an app: command line",
+    "text": "Running an app: command line\nNo editor needed. From a terminal (Git Bash on Windows, Terminal on macOS):\n# go to the lecture folder first\ncd shiny-lecture\n\n# run and open the browser automatically\nRscript -e 'shiny::runApp(\"apps/01-hello-shiny\", launch.browser = TRUE)'\n\n# run on a fixed port, then visit http://127.0.0.1:8080\nRscript -e 'shiny::runApp(\"apps/01-hello-shiny\", port = 8080)'\n\nStop it: Ctrl + C in the terminal\nRscript not found? R is not on your PATH. Use the full path to Rscript, or run from RStudio’s Terminal tab.\nThis is essentially how servers run Shiny apps for real users"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#running-an-app-summary",
+    "href": "Demo/Shiny-demo.html#running-an-app-summary",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Running an app: summary",
+    "text": "Running an app: summary\n\n\n\n\n\n\n\n\nWhere\nHow\nStop\n\n\n\n\nRStudio\nOpen app.R, click Run App\nEsc or stop sign\n\n\nVS Code / Positron\nShiny extension, Run Shiny App button\nStop button\n\n\nR console\nshiny::runApp(\"folder\")\nEsc or Ctrl + C\n\n\nTerminal\nRscript -e 'shiny::runApp(\"folder\")'\nCtrl + C\n\n\n\nKey idea: every option starts the same thing, a small web server powered by your R session. While it runs, that R session is busy serving the app.\nThat is also why these notes show app code as text: running an app inside a notebook would block the notebook."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#inputs-widgets-users-interact-with",
+    "href": "Demo/Shiny-demo.html#inputs-widgets-users-interact-with",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Inputs: widgets users interact with",
+    "text": "Inputs: widgets users interact with\n\n\n\n\n\n\n\n\nFunction\nWidget\nValue in input$id\n\n\n\n\nsliderInput()\nslider (single value or range)\nnumber(s)\n\n\nselectInput()\ndropdown menu\ntext\n\n\ntextInput()\ntext box\ntext\n\n\nnumericInput()\nnumber box\nnumber\n\n\ncheckboxInput()\nsingle checkbox\nTRUE / FALSE\n\n\ncheckboxGroupInput()\nseveral checkboxes\nvector of choices\n\n\nradioButtons()\npick exactly one\ntext\n\n\ndateInput()\ncalendar\ndate\n\n\nactionButton()\nbutton\nclick count\n\n\n\nEvery input starts with the same two arguments:\nsliderInput(inputId = \"n\", label = \"Number of points:\", ...)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#ui-functions-just-write-html",
+    "href": "Demo/Shiny-demo.html#ui-functions-just-write-html",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "UI functions just write HTML",
+    "text": "UI functions just write HTML\nRun a UI function in the console and you get web page code back:\n\n\nERROR: Error in textInput(\"name\", \"What is your name?\"): could not find function \"textInput\"\n\nError in textInput(\"name\", \"What is your name?\"): could not find function \"textInput\"\nTraceback:\n\n\n\nShiny writes the HTML for you\nThis is why you can build web apps without learning web development"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#outputs-placeholders-plus-render-functions",
+    "href": "Demo/Shiny-demo.html#outputs-placeholders-plus-render-functions",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Outputs: placeholders plus render functions",
+    "text": "Outputs: placeholders plus render functions\nOutputs always come in pairs: a placeholder in the UI and a render function in the server.\n\n\n\n\n\n\n\n\nUI placeholder\nServer render function\nShows\n\n\n\n\nplotOutput(\"id\")\nrenderPlot({ ... })\nplots (base R or ggplot2)\n\n\ntableOutput(\"id\")\nrenderTable({ ... })\ndata frames\n\n\ntextOutput(\"id\")\nrenderText({ ... })\ntext\n\n\nverbatimTextOutput(\"id\")\nrenderPrint({ ... })\nconsole-style output\n\n\nuiOutput(\"id\")\nrenderUI({ ... })\nUI built on the fly\n\n\n\n# UI\nplotOutput(\"hist\")\n\n# server\noutput$hist &lt;- renderPlot({\n  hist(rnorm(input$n))\n})"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#connecting-them-input-and-output",
+    "href": "Demo/Shiny-demo.html#connecting-them-input-and-output",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Connecting them: input$ and output$",
+    "text": "Connecting them: input$ and output$\nInside the server:\n\nRead inputs with input$&lt;id&gt;\nWrite outputs with output$&lt;id&gt; &lt;- render...()\nThe id strings must match exactly between UI and server\n\nui &lt;- fluidPage(\n  sliderInput(\"n\", ...),          # creates input$n\n  plotOutput(\"hist\")              # waits for output$hist\n)\n\nserver &lt;- function(input, output, session) {\n  output$hist &lt;- renderPlot({     # fills the \"hist\" placeholder\n    hist(rnorm(input$n))          # reads the \"n\" slider\n  })\n}"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#the-most-common-beginner-bugs",
+    "href": "Demo/Shiny-demo.html#the-most-common-beginner-bugs",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "The most common beginner bugs",
+    "text": "The most common beginner bugs\n\nMismatched ids: plotOutput(\"histogram\") but output$hist. Nothing appears, and there is no error.\nMissing commas in the UI: the UI is one big nested function call, so elements are separated by commas\nForgetting the render function: output$hist &lt;- hist(...) fails; it must be renderPlot({ hist(...) })\nReading inputs outside a reactive context: input$n only works inside render*(), reactive(), or observe*()\nWrong working directory: read.csv(\"data.csv\") fails because the file is not inside the app folder\n\nDebugging tip: add print(input$n) inside a render function and watch the console."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#reactivity-the-simple-version",
+    "href": "Demo/Shiny-demo.html#reactivity-the-simple-version",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Reactivity: the simple version",
+    "text": "Reactivity: the simple version\n\nWhen an input changes, anything that uses it updates automatically.\n\n\nLike a spreadsheet: change a cell, and every formula that uses it recalculates\nYou describe what each output depends on, Shiny decides when to update it\nCode does not run top to bottom once like a script\n\nIn App 1, Shiny tracks these dependencies:\n\n\n\n\n\n\n\n\n\n\nChange the name: only the greeting re-runs\nMove the slider: the greeting and the histogram re-run"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#peek-under-the-hood",
+    "href": "Demo/Shiny-demo.html#peek-under-the-hood",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Peek under the hood",
+    "text": "Peek under the hood\nShiny’s reactive values can be explored right in the console:\n\n\n12\n\n\n\n\n40\n\n\n\ntotal remembers its recipe, not just its value\nYou will rarely write this in real apps; inputs play the role of reactiveVal()"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#reactive-compute-once-use-everywhere",
+    "href": "Demo/Shiny-demo.html#reactive-compute-once-use-everywhere",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "reactive(): compute once, use everywhere",
+    "text": "reactive(): compute once, use everywhere\nProblem: several outputs need the same filtered data.\n# Without reactive(): the filter runs 3 times\noutput$plot  &lt;- renderPlot({ data &lt;- filter(mpg, class == input$class); ... })\noutput$table &lt;- renderTable({ data &lt;- filter(mpg, class == input$class); ... })\noutput$count &lt;- renderText({ data &lt;- filter(mpg, class == input$class); ... })\n# With reactive(): write it once, reuse it\nfiltered &lt;- reactive({\n  filter(mpg, class == input$class)\n})\n\noutput$plot  &lt;- renderPlot({ ggplot(filtered(), ...) })\noutput$table &lt;- renderTable({ filtered() })\noutput$count &lt;- renderText({ nrow(filtered()) })\n\nCall it with parentheses: filtered()\nRe-runs only when input$class changes, and caches the result\nLess repeated code, faster apps"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#recall-mpg-data",
+    "href": "Demo/Shiny-demo.html#recall-mpg-data",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Recall MPG data",
+    "text": "Recall MPG data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmanufacturer\nmodel\ndispl\nyear\ncyl\ntrans\ndrv\ncty\nhwy\nfl\nclass\n\n\n\n\naudi\na4\n1.8\n1999\n4\nauto(l5)\nf\n18\n29\np\ncompact\n\n\naudi\na4\n1.8\n1999\n4\nmanual(m5)\nf\n21\n29\np\ncompact\n\n\naudi\na4\n2.0\n2008\n4\nmanual(m6)\nf\n20\n31\np\ncompact\n\n\naudi\na4\n2.0\n2008\n4\nauto(av)\nf\n21\n30\np\ncompact\n\n\naudi\na4\n2.8\n1999\n6\nauto(l5)\nf\n16\n26\np\ncompact\n\n\naudi\na4\n2.8\n1999\n6\nmanual(m5)\nf\n18\n26\np\ncompact\n\n\naudi\na4\n3.1\n2008\n6\nauto(av)\nf\n18\n27\np\ncompact\n\n\naudi\na4 quattro\n1.8\n1999\n4\nmanual(m5)\n4\n18\n26\np\ncompact\n\n\naudi\na4 quattro\n1.8\n1999\n4\nauto(l5)\n4\n16\n25\np\ncompact\n\n\naudi\na4 quattro\n2.0\n2008\n4\nmanual(m6)\n4\n20\n28\np\ncompact\n\n\n\nKey: displ engine size (L), cyl cylinders, trans transmission, drv drive (f = front, r = rear, 4 = 4WD), cty / hwy city / highway MPG, fl fuel type (p = premium)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#app-2-mpg-explorer",
+    "href": "Demo/Shiny-demo.html#app-2-mpg-explorer",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "App 2: MPG Explorer",
+    "text": "App 2: MPG Explorer\nA regular (non-dashboard) app that uses more of Shiny’s toolbox.\n\n\n\nApp 2: MPG Explorer\n\n\n\nMulti-select, checkboxes, range slider, radio buttons, and dropdowns\nTabs for Plot, Summary, and Data\nA Reset button and a Download button"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#the-big-picture",
+    "href": "Demo/Shiny-demo.html#the-big-picture",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "The big picture",
+    "text": "The big picture\nWhat the app does: lets users filter the mpg cars and explore them as a plot, a summary, or a raw table.\nHow the file is organized\n\n\n\n\n\n\n\n\nSection\nLines\nJob\n\n\n\n\nSetup\ntop\nLoad packages, prepare data and labels\n\n\nUI\nui &lt;- fluidPage(...)\nLayout, inputs, output placeholders\n\n\nServer\nserver &lt;- function(...)\nFilter data, build outputs, handle buttons\n\n\nLaunch\nshinyApp(ui, server)\nStart the app\n\n\n\nReading tip: read the UI first to see what users can do, then the server to see what happens when they do it."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-1-setup",
+    "href": "Demo/Shiny-demo.html#step-1-setup",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 1: setup",
+    "text": "Step 1: setup\nlibrary(shiny)\nlibrary(ggplot2)\nlibrary(dplyr)\n\ncars &lt;- mpg\n\nnum_vars &lt;- c(\n  \"Engine size (L)\" = \"displ\",\n  \"City MPG\"        = \"cty\",\n  \"Highway MPG\"     = \"hwy\",\n  \"Cylinders\"       = \"cyl\"\n)\n\nCode outside ui and server runs once, when the app starts\nnum_vars is a named vector:\n\nnames (left) are what users see in the dropdown: “Highway MPG”\nvalues (right) are what the code receives: \"hwy\""
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-2-the-page-layout",
+    "href": "Demo/Shiny-demo.html#step-2-the-page-layout",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 2: the page layout",
+    "text": "Step 2: the page layout\nui &lt;- fluidPage(\n  titlePanel(\"MPG Explorer\"),\n  sidebarLayout(\n    sidebarPanel( ...inputs... ),\n    mainPanel( ...outputs... )\n  )\n)\n┌──────────────────────────────────────────────┐\n│ MPG Explorer                    (titlePanel) │\n├───────────────┬──────────────────────────────┤\n│ sidebarPanel  │ mainPanel                    │\n│               │                              │\n│ filters       │ \"109 of 234 cars match...\"   │\n│ plot settings │ [ Plot | Summary | Data ]    │\n│ buttons       │                              │\n└───────────────┴──────────────────────────────┘\n\nh4() adds a small heading, hr() a divider line, br() a blank line"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-3-the-filter-inputs",
+    "href": "Demo/Shiny-demo.html#step-3-the-filter-inputs",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 3: the filter inputs",
+    "text": "Step 3: the filter inputs\nselectInput(\"class\", \"Vehicle class:\",\n            choices = sort(unique(cars$class)),\n            selected = sort(unique(cars$class)),\n            multiple = TRUE)\n\ncheckboxGroupInput(\"year\", \"Model year:\",\n                   choices = c(1999, 2008), selected = c(1999, 2008))\n\nsliderInput(\"displ\", \"Engine size (L):\",\n            min = min(cars$displ), max = max(cars$displ),\n            value = range(cars$displ), step = 0.1)\n\n\n\n\n\n\n\n\nInput\nWidget\nWhat input$... holds\n\n\n\n\ninput$class\nmulti-select dropdown\none or more classes, e.g. c(\"suv\", \"compact\")\n\n\ninput$year\ncheckboxes\none or both years\n\n\ninput$displ\nrange slider (two handles)\ntwo numbers: c(low, high)\n\n\n\n\nchoices and selected come from the data, so nothing is typed by hand\nGiving value two numbers turns a slider into a range slider"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-4-plot-settings-and-buttons",
+    "href": "Demo/Shiny-demo.html#step-4-plot-settings-and-buttons",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 4: plot settings and buttons",
+    "text": "Step 4: plot settings and buttons\nselectInput(\"x\", \"X axis:\", choices = num_vars, selected = \"displ\")\nselectInput(\"y\", \"Y axis:\", choices = num_vars, selected = \"hwy\")\n\nradioButtons(\"color\", \"Color points by:\",\n             choices = c(\"Class\" = \"class\", \"Drive type\" = \"drv\",\n                         \"Year\" = \"year\", \"None\" = \"none\"))\n\nactionButton(\"reset\", \"Reset filters\", icon = icon(\"rotate-left\"))\ndownloadButton(\"download\", \"Download data\")\n\ninput$x and input$y hold column names as text, like \"hwy\"\ninput$color holds \"class\", \"drv\", \"year\", or \"none\"\ninput$reset counts clicks: 0, 1, 2, …\nThe download button is special: it pairs with output$download"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-5-the-output-placeholders",
+    "href": "Demo/Shiny-demo.html#step-5-the-output-placeholders",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 5: the output placeholders",
+    "text": "Step 5: the output placeholders\nmainPanel(\n  textOutput(\"count\"),\n  tabsetPanel(\n    tabPanel(\"Plot\",    plotOutput(\"scatter\", height = \"450px\")),\n    tabPanel(\"Summary\", tableOutput(\"summary\")),\n    tabPanel(\"Data\",    tableOutput(\"table\"))\n  )\n)\n\nFour empty boxes, waiting for the server to fill them\ntabsetPanel() stacks the three views behind clickable tabs\nEach id must match the server: \"scatter\" here, output$scatter there"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-6-the-shared-filtered-data",
+    "href": "Demo/Shiny-demo.html#step-6-the-shared-filtered-data",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 6: the shared filtered data",
+    "text": "Step 6: the shared filtered data\nfiltered &lt;- reactive({\n  cars |&gt;\n    filter(class %in% input$class,\n           year  %in% input$year,\n           displ &gt;= input$displ[1],\n           displ &lt;= input$displ[2])\n})\n\nKeeps only the cars that pass all four conditions\n%in% keeps a row if its value matches any of the selected choices\ninput$displ[1] is the slider’s low end and input$displ[2] its high end\nEvery output uses filtered(), so the filtering is written once and runs once per change"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-7-the-count-and-the-plot",
+    "href": "Demo/Shiny-demo.html#step-7-the-count-and-the-plot",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 7: the count and the plot",
+    "text": "Step 7: the count and the plot\noutput$count &lt;- renderText({\n  paste(nrow(filtered()), \"of\", nrow(cars), \"cars match your filters.\")\n})\noutput$scatter &lt;- renderPlot({\n  validate(need(nrow(filtered()) &gt; 0, \"No cars match these filters.\"))\n\n  p &lt;- ggplot(filtered(), aes(x = .data[[input$x]], y = .data[[input$y]]))\n  ...\n})\n\nvalidate(need(...)): if no cars are left, show a friendly message instead of an error\n.data[[input$x]]: input$x is text like \"hwy\", and this tells ggplot “use the column with this name”\nThen an if / else adds colored points, or plain blue points when “None” is picked\nnames(num_vars)[num_vars == input$x] looks up the friendly axis label: \"hwy\" becomes “Highway MPG”"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-8-the-summary-and-data-tabs",
+    "href": "Demo/Shiny-demo.html#step-8-the-summary-and-data-tabs",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 8: the summary and data tabs",
+    "text": "Step 8: the summary and data tabs\noutput$summary &lt;- renderTable({\n  filtered() |&gt;\n    group_by(class) |&gt;\n    summarise(cars = n(),\n              avg_city_mpg = mean(cty),\n              avg_hwy_mpg  = mean(hwy)) |&gt;\n    arrange(desc(avg_hwy_mpg))\n}, digits = 1)\n\noutput$table &lt;- renderTable({\n  filtered() |&gt;\n    select(manufacturer, model, year, class, displ, cyl, drv, cty, hwy)\n})\n\nOrdinary dplyr code, the same as you would write in a script\nThe only Shiny parts: renderTable({ }) around it, and filtered() instead of mpg"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-9-the-reset-button",
+    "href": "Demo/Shiny-demo.html#step-9-the-reset-button",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 9: the reset button",
+    "text": "Step 9: the reset button\nobserveEvent(input$reset, {\n  updateSelectInput(session, \"class\", selected = sort(unique(cars$class)))\n  updateCheckboxGroupInput(session, \"year\", selected = c(1999, 2008))\n  updateSliderInput(session, \"displ\", value = range(cars$displ))\n})\n\nobserveEvent(input$reset, { ... }) means “every time the button is clicked, run this”\nIt does something (moves the inputs back) instead of making an output\nupdate*Input() changes a widget from the server, and session says which user’s page to change\nMoving the inputs triggers filtered(), so every output updates on its own"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-10-the-download-button",
+    "href": "Demo/Shiny-demo.html#step-10-the-download-button",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 10: the download button",
+    "text": "Step 10: the download button\noutput$download &lt;- downloadHandler(\n  filename = function() \"mpg-filtered.csv\",\n  content  = function(file) write.csv(filtered(), file, row.names = FALSE)\n)\n\nfilename: what the downloaded file is called\ncontent: how to write it, which here means saving the current filtered() data as a CSV\nUsers download exactly what they filtered, nothing more"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#recap-follow-one-click",
+    "href": "Demo/Shiny-demo.html#recap-follow-one-click",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Recap: follow one click",
+    "text": "Recap: follow one click\nThe user unchecks 1999:\n\ninput$year changes from c(1999, 2008) to 2008\nfiltered() re-runs: now only 2008 cars\nEverything that uses filtered() updates: the count, plot, summary, and table\n\nThe user changes the X axis:\n\ninput$x changes\nOnly the plot re-runs, because it is the only thing that uses input$x\nfiltered() does not re-run, since no filter changed\n\n\nShiny only redoes the work that depends on what changed."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#app-2-how-the-pieces-connect",
+    "href": "Demo/Shiny-demo.html#app-2-how-the-pieces-connect",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "App 2: how the pieces connect",
+    "text": "App 2: how the pieces connect\n\n\n\n\n\n\n\n\n\n\nFilter inputs feed one reactive(), which feeds every output\nPlot settings (orange) go straight to the plot, so changing the axis does not re-filter the data"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#app-2-new-tools-it-introduces",
+    "href": "Demo/Shiny-demo.html#app-2-new-tools-it-introduces",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "App 2: new tools it introduces",
+    "text": "App 2: new tools it introduces\nRespond to a button with observeEvent() (for side effects, not outputs)\nobserveEvent(input$reset, {\n  updateSliderInput(session, \"displ\", value = range(cars$displ))\n})\nShow a friendly message instead of an error with validate()\nvalidate(need(nrow(filtered()) &gt; 0, \"No cars match these filters.\"))\nLet users download the data with downloadHandler()\noutput$download &lt;- downloadHandler(\n  filename = function() \"mpg-filtered.csv\",\n  content  = function(file) write.csv(filtered(), file, row.names = FALSE)\n)\nOrganize views with tabsetPanel()\ntabsetPanel(\n  tabPanel(\"Plot\",    plotOutput(\"scatter\")),\n  tabPanel(\"Summary\", tableOutput(\"summary\"))\n)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#app-2-full-code",
+    "href": "Demo/Shiny-demo.html#app-2-full-code",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "App 2: full code",
+    "text": "App 2: full code\n# ------------------------------------------------------------\n# App 2: MPG Explorer\n# A classic Shiny app (not a dashboard) that shows off more widgets\n# and the key reactivity tools:\n#   - several input types (select, checkbox group, slider, radio)\n#   - reactive() to share one filtered dataset across outputs\n#   - tabsetPanel() for multiple views\n#   - observeEvent() + update*Input() for a \"Reset\" button\n#   - downloadHandler() to export the filtered data\n#\n# Run it:  shiny::runApp(\"02-mpg-explorer\")\n# ------------------------------------------------------------\n\nlibrary(shiny)\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# mpg ships with ggplot2: 234 cars from 1999 and 2008\ncars &lt;- mpg\n\n# Friendly labels for the numeric variables users can plot\nnum_vars &lt;- c(\n  \"Engine size (L)\" = \"displ\",\n  \"City MPG\"        = \"cty\",\n  \"Highway MPG\"     = \"hwy\",\n  \"Cylinders\"       = \"cyl\"\n)\n\n# ---- UI ------------------------------------------------------\nui &lt;- fluidPage(\n  titlePanel(\"MPG Explorer\"),\n\n  sidebarLayout(\n    sidebarPanel(\n      h4(\"Filter the cars\"),\n\n      selectInput(\"class\", \"Vehicle class:\",\n                  choices  = sort(unique(cars$class)),\n                  selected = sort(unique(cars$class)),\n                  multiple = TRUE),\n\n      checkboxGroupInput(\"year\", \"Model year:\",\n                         choices  = c(1999, 2008),\n                         selected = c(1999, 2008),\n                         inline   = TRUE),\n\n      sliderInput(\"displ\", \"Engine size (L):\",\n                  min = min(cars$displ), max = max(cars$displ),\n                  value = range(cars$displ), step = 0.1),\n\n      hr(),\n      h4(\"Plot settings\"),\n\n      selectInput(\"x\", \"X axis:\", choices = num_vars, selected = \"displ\"),\n      selectInput(\"y\", \"Y axis:\", choices = num_vars, selected = \"hwy\"),\n\n      radioButtons(\"color\", \"Color points by:\",\n                   choices = c(\"Class\" = \"class\", \"Drive type\" = \"drv\",\n                               \"Year\" = \"year\", \"None\" = \"none\"),\n                   selected = \"class\"),\n\n      hr(),\n      actionButton(\"reset\", \"Reset filters\", icon = icon(\"rotate-left\")),\n      downloadButton(\"download\", \"Download data\")\n    ),\n\n    mainPanel(\n      textOutput(\"count\"),\n      br(),\n      tabsetPanel(\n        tabPanel(\"Plot\",    plotOutput(\"scatter\", height = \"450px\")),\n        tabPanel(\"Summary\", tableOutput(\"summary\")),\n        tabPanel(\"Data\",    tableOutput(\"table\"))\n      )\n    )\n  )\n)\n\n# ---- Server --------------------------------------------------\nserver &lt;- function(input, output, session) {\n\n  # One reactive expression feeds every output below.\n  # It re-runs only when one of the filter inputs changes.\n  filtered &lt;- reactive({\n    cars |&gt;\n      filter(class %in% input$class,\n             year  %in% input$year,\n             displ &gt;= input$displ[1],\n             displ &lt;= input$displ[2])\n  })\n\n  output$count &lt;- renderText({\n    paste(nrow(filtered()), \"of\", nrow(cars), \"cars match your filters.\")\n  })\n\n  output$scatter &lt;- renderPlot({\n    # validate() shows a friendly message instead of an error\n    validate(need(nrow(filtered()) &gt; 0, \"No cars match these filters.\"))\n\n    p &lt;- ggplot(filtered(), aes(x = .data[[input$x]], y = .data[[input$y]]))\n\n    if (input$color == \"none\") {\n      p &lt;- p + geom_point(size = 3, alpha = 0.7, color = \"steelblue\")\n    } else {\n      color_labels &lt;- c(class = \"Class\", drv = \"Drive type\", year = \"Year\")\n      p &lt;- p +\n        geom_point(aes(color = factor(.data[[input$color]])),\n                   size = 3, alpha = 0.7) +\n        labs(color = color_labels[[input$color]])\n    }\n\n    p +\n      labs(x = names(num_vars)[num_vars == input$x],\n           y = names(num_vars)[num_vars == input$y]) +\n      theme_minimal(base_size = 15)\n  })\n\n  output$summary &lt;- renderTable({\n    filtered() |&gt;\n      group_by(class) |&gt;\n      summarise(cars         = n(),\n                avg_city_mpg = mean(cty),\n                avg_hwy_mpg  = mean(hwy)) |&gt;\n      arrange(desc(avg_hwy_mpg))\n  }, digits = 1)\n\n  output$table &lt;- renderTable({\n    filtered() |&gt;\n      select(manufacturer, model, year, class, displ, cyl, drv, cty, hwy)\n  })\n\n  # observeEvent() runs code for its side effect (here: changing inputs)\n  observeEvent(input$reset, {\n    updateSelectInput(session, \"class\", selected = sort(unique(cars$class)))\n    updateCheckboxGroupInput(session, \"year\", selected = c(1999, 2008))\n    updateSliderInput(session, \"displ\", value = range(cars$displ))\n  })\n\n  output$download &lt;- downloadHandler(\n    filename = function() \"mpg-filtered.csv\",\n    content  = function(file) write.csv(filtered(), file, row.names = FALSE)\n  )\n}\n\nshinyApp(ui, server)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#workflow-tip-prototype-outside-shiny-first",
+    "href": "Demo/Shiny-demo.html#workflow-tip-prototype-outside-shiny-first",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Workflow tip: prototype outside Shiny first",
+    "text": "Workflow tip: prototype outside Shiny first\nGet the plot working as plain R, then swap in the inputs:\n\n\n\n\n\n\n\n\n\n\nDebugging is much easier in a script than inside a running app\nOnce it works, move it into renderPlot({ ... }) and replace chosen_class with input$class"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#definition",
+    "href": "Demo/Shiny-demo.html#definition",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Definition",
+    "text": "Definition\n\nA dashboard is a single screen showing the most important information about something, at a glance.\n\n\nNamed after a car dashboard: speed, fuel, warnings, all visible without digging\nPurpose: monitoring and quick decisions\nNot for: deep, step-by-step analysis or long explanations\n\nEveryday examples\n\nFitness app: steps, heart rate, sleep this week\nWeather app: temperature now, forecast, alerts\nCourse LMS: grades, upcoming deadlines, announcements"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#core-building-blocks",
+    "href": "Demo/Shiny-demo.html#core-building-blocks",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Core building blocks",
+    "text": "Core building blocks\n\n\n\n\n\n\n\n\n\n\nKey metrics: headline numbers (total sales, average score, number of cases)\nVisualizations: a few focused charts showing trends or comparisons\nFilters and controls: let users focus on what matters to them\nLayout: controls in a sidebar, content arranged by importance"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#design-principles",
+    "href": "Demo/Shiny-demo.html#design-principles",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Design principles",
+    "text": "Design principles\n\nKnow your audience: what questions do they need answered?\nMost important first: people read top-left to bottom-right, so headline numbers go at the top\nLess is more: every element must earn its place\nBe consistent: same colors, units, and number formats everywhere\nLabel clearly: plain-language titles (“Bigger engines, lower mileage”) beat variable names (displ vs hwy)\nMake it honest: start bar charts at zero, show units, cite the data source"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#dashboard-vs.-report",
+    "href": "Demo/Shiny-demo.html#dashboard-vs.-report",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Dashboard vs. report",
+    "text": "Dashboard vs. report\nReport\n\nTells one story, once\nUsually static (PDF, web page, slides)\nThe author decides what you see\nWritten for reading start to finish\nExample: a Quarto website or research paper\n\nDashboard\n\nAnswers many questions, repeatedly\nInteractive and often regularly updated\nThe user decides what to look at\nBuilt for scanning and exploring\nExample: a live sales or public health tracker"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#why-does-a-dashboard-need-a-server",
+    "href": "Demo/Shiny-demo.html#why-does-a-dashboard-need-a-server",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Why does a dashboard need a server?",
+    "text": "Why does a dashboard need a server?\nYou can already make interactive charts without Shiny (for example with Plotly or htmlwidgets). So why run R behind the page?\n\n\n\n\n\n\n\n\n\n\nClient-side: interactivity with the data you already shipped\nServer-side: interactivity that can do new work every time a user clicks"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#reasons-to-use-a-server",
+    "href": "Demo/Shiny-demo.html#reasons-to-use-a-server",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Reasons to use a server",
+    "text": "Reasons to use a server\nData\n\nLive data: connect to a database or API that updates constantly; users always see the latest numbers\nBig data: the server summarizes millions of rows and sends back only the result; an HTML chart would have to embed every row\n\nComputation\n\nReal analysis on demand: fit a model, run a simulation, or make a forecast from the user’s inputs\nGenerated outputs: build a custom PDF report or a filtered CSV download\n\nSecurity\n\nPrivacy: raw data never leaves the server; users only see summaries\nLogins: different users can see different data\nSecrets: passwords and API keys stay on the server, never in the page\n\nTwo-way apps\n\nUploads: users analyze their own files\nWriting back: forms, surveys, and annotations saved to a database"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#the-trade-off",
+    "href": "Demo/Shiny-demo.html#the-trade-off",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "The trade-off",
+    "text": "The trade-off\nClient-side (Plotly, htmlwidgets)\n\nFree and easy to host (any static site, like a Quarto website)\nWorks offline once loaded\nLimited to the data in the page\nAnyone can download that data\n\nServer-side (Shiny)\n\nCan do anything R can do\nData can be big, live, and private\nNeeds a running R server somewhere\nHosting takes setup, and may cost money at scale\n\nRule of thumb: if a static chart answers the question, use a static chart. Reach for Shiny when users need the app to compute something new."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#what-is-bslib",
+    "href": "Demo/Shiny-demo.html#what-is-bslib",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "What is bslib?",
+    "text": "What is bslib?\n\nAn R package from Posit for layouts and themes in Shiny and R Markdown / Quarto\nBuilt on Bootstrap 5, the most popular web styling toolkit\nActively maintained; the recommended way to build Shiny dashboards today\n\nWhat changes, what stays the same\n\nSame: inputs, outputs, render*() functions, reactive(), the whole server\nDifferent: only the UI functions that arrange things on the page\n\n\nShiny is the engine. bslib is the car body around it.\n\nNote: you will see shinydashboard in older tutorials. Same idea, older package, different function names (dashboardPage(), box(), valueBox())."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#key-functions",
+    "href": "Demo/Shiny-demo.html#key-functions",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Key functions",
+    "text": "Key functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunction\nRole\n\n\n\n\npage_sidebar()\nThe whole page: title bar, sidebar, main area\n\n\nsidebar()\nCollapsible panel for inputs\n\n\nvalue_box()\nHeadline number with an optional icon\n\n\ncard() + card_header()\nA bordered panel for a chart or table\n\n\nlayout_columns()\nPlaces items side by side in a row\n\n\nbs_theme()\nColors, fonts, and ready-made themes"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#classic-shiny-vs.-bslib",
+    "href": "Demo/Shiny-demo.html#classic-shiny-vs.-bslib",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Classic Shiny vs. bslib",
+    "text": "Classic Shiny vs. bslib\nClassic Shiny (App 1)\nui &lt;- fluidPage(\n  titlePanel(\"My app\"),\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"n\", ...)\n    ),\n    mainPanel(\n      plotOutput(\"plot\")\n    )\n  )\n)\nbslib dashboard\nui &lt;- page_sidebar(\n  title = \"My app\",\n  sidebar = sidebar(\n    sliderInput(\"n\", ...)\n  ),\n  card(\n    card_header(\"My plot\"),\n    plotOutput(\"plot\")\n  )\n)\n\nSame inputs and outputs, less nesting\nThe server function does not change at all"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#the-data-a-toy-coffee-shop",
+    "href": "Demo/Shiny-demo.html#the-data-a-toy-coffee-shop",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "The data: a toy coffee shop",
+    "text": "The data: a toy coffee shop\nApp 3 uses made-up data, created right inside app.R:\nset.seed(42)\ncoffee &lt;- data.frame(\n  day      = 1:60,\n  visitors = round(120 + 2 * (1:60) + rnorm(60, sd = 15))\n)\nWhat the code does\n\nday: days 1 through 60 (about two months)\nvisitors: starts around 120, grows by about 2 visitors per day, plus random day-to-day noise\nrnorm(60, sd = 15): adds realistic ups and downs\nset.seed(42): makes the “random” numbers the same every time, so everyone sees identical results\n\nFirst few rows\n\n\n\nday\nvisitors\n\n\n\n\n1\n143\n\n\n2\n116\n\n\n3\n131\n\n\n4\n137\n\n\n5\n136\n\n\n\nQuick summary (all 60 days)\n\n\n\nStatistic\nValue\n\n\n\n\nFewest visitors in a day\n116\n\n\nMost visitors in a day\n250\n\n\nAverage per day\nabout 181\n\n\nTotal visitors\n10,836\n\n\n\nIn the dashboard\n\nThe slider picks how many of the most recent days to show (7 to\n\n\n\nThe value boxes show the total and average for those days\nDefault (last 30 days): 6,276 total visitors, 209 per day"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#app-3-hello-bslib",
+    "href": "Demo/Shiny-demo.html#app-3-hello-bslib",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "App 3: Hello, bslib!",
+    "text": "App 3: Hello, bslib!\nThe smallest possible dashboard: toy data, one slider, two value boxes, one chart.\n# ------------------------------------------------------------\n# App 3: Hello, bslib!\n# The smallest possible dashboard: a sidebar, two value boxes,\n# and one chart card. Uses made-up (toy) data.\n#\n# Same Shiny engine as App 1. Only the UI functions change:\n#   fluidPage()  -&gt;  page_sidebar()\n#   panels       -&gt;  card() and value_box()\n#\n# Run it:  shiny::runApp(\"03-hello-bslib\")\n# ------------------------------------------------------------\n\nlibrary(shiny)\nlibrary(bslib)\n\n# Toy data: daily visitors to a coffee shop for 60 days\nset.seed(42)\ncoffee &lt;- data.frame(\n  day      = 1:60,\n  visitors = round(120 + 2 * (1:60) + rnorm(60, sd = 15))\n)\n\n# ---- UI ------------------------------------------------------\nui &lt;- page_sidebar(\n  title = \"Coffee Shop Dashboard\",\n\n  sidebar = sidebar(\n    sliderInput(\"days\", \"Show the last N days:\",\n                min = 7, max = 60, value = 30)\n  ),\n\n  # Two headline numbers side by side\n  layout_columns(\n    value_box(\n      title = \"Total visitors\",\n      value = textOutput(\"total\"),\n      showcase = icon(\"users\"),\n      theme = \"primary\"\n    ),\n    value_box(\n      title = \"Average per day\",\n      value = textOutput(\"average\"),\n      showcase = icon(\"mug-hot\"),\n      theme = \"secondary\"\n    )\n  ),\n\n  # One chart in a card\n  card(\n    card_header(\"Daily visitors\"),\n    plotOutput(\"trend\")\n  )\n)\n\n# ---- Server --------------------------------------------------\nserver &lt;- function(input, output, session) {\n\n  recent &lt;- reactive({\n    tail(coffee, input$days)\n  })\n\n  output$total   &lt;- renderText(format(sum(recent()$visitors), big.mark = \",\"))\n  output$average &lt;- renderText(round(mean(recent()$visitors)))\n\n  output$trend &lt;- renderPlot({\n    plot(recent()$day, recent()$visitors, type = \"b\", pch = 19,\n         col = \"steelblue\", xlab = \"Day\", ylab = \"Visitors\")\n  })\n}\n\nshinyApp(ui, server)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#what-it-looks-like-1",
+    "href": "Demo/Shiny-demo.html#what-it-looks-like-1",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "What it looks like",
+    "text": "What it looks like\n\n\n\nApp 3: Hello, bslib!\n\n\n\nThe sidebar collapses with the arrow at the top\nThe layout resizes automatically on a phone or a small window"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#value-boxes",
+    "href": "Demo/Shiny-demo.html#value-boxes",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Value boxes",
+    "text": "Value boxes\nvalue_box(\n  title    = \"Total visitors\",       # small label\n  value    = textOutput(\"total\"),    # the big number (can be reactive)\n  showcase = icon(\"users\"),          # optional icon on the left\n  theme    = \"primary\"               # color: primary, success, info, ...\n)\n\nvalue can be fixed text or a textOutput() that the server fills in\nicon() uses the free Font Awesome icon set; search names at fontawesome.com\nPut several in layout_columns() to make a row"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#cards-and-layout",
+    "href": "Demo/Shiny-demo.html#cards-and-layout",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Cards and layout",
+    "text": "Cards and layout\nlayout_columns(\n  col_widths = c(7, 5),          # widths out of 12\n  card(\n    full_screen = TRUE,          # adds an \"expand\" button\n    card_header(\"Main chart\"),\n    plotOutput(\"scatter\")\n  ),\n  card(\n    card_header(\"Second chart\"),\n    plotOutput(\"bars\")\n  )\n)\n\nThe page is a 12-column grid: c(7, 5) means 7/12 and 5/12 of the width\nfull_screen = TRUE lets users enlarge a card, which is great for presentations\nItems in page_sidebar() stack vertically; layout_columns() puts them side by side"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#themes",
+    "href": "Demo/Shiny-demo.html#themes",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Themes",
+    "text": "Themes\nChange the whole look with one argument:\nui &lt;- page_sidebar(\n  title = \"My dashboard\",\n  theme = bs_theme(bootswatch = \"flatly\", primary = \"#2C7FB8\"),\n  ...\n)\n\nbootswatch offers ready-made themes: \"flatly\", \"minty\", \"darkly\", \"lux\", \"sandstone\", …\nSet your own colors and fonts: bs_theme(primary = ..., base_font = ...)\nTry themes live: add bs_themer() as the first line of your server function, then pick from a menu while the app runs\nBootstrap themes are the same system Quarto websites use, so your app can match your site"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#the-data-mpg",
+    "href": "Demo/Shiny-demo.html#the-data-mpg",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "The data: mpg",
+    "text": "The data: mpg\nShips with ggplot2, so there is nothing to download.\n\n\n\n\n\n\n234 cars, model years 1999 and 2008\nCategories to filter by: manufacturer, class, drv (drive type), year, cyl\nNumbers to summarize: cty and hwy (city and highway miles per gallon), displ (engine size)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#plan-before-you-build",
+    "href": "Demo/Shiny-demo.html#plan-before-you-build",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Plan before you build",
+    "text": "Plan before you build\nAudience: someone shopping for a fuel-efficient car\nQuestions the dashboard should answer\n\nHow many cars match what I am looking for?\nWhat mileage can I expect in the city and on the highway?\nDo bigger engines really mean worse mileage?\nWhich brands are the most efficient?\nWhich specific models should I look at?\n\nMap questions to building blocks\n\n\n\n\n\n\n\nQuestion\nBuilding block\n\n\n\n\n1, 2\nThree value boxes\n\n\n3\nScatter plot card\n\n\n4\nBar chart card\n\n\n5\nTop 10 table card\n\n\n“what I am looking for”\nSidebar filters: class, year, drive, cylinders"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#the-final-product",
+    "href": "Demo/Shiny-demo.html#the-final-product",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "The final product",
+    "text": "The final product\n\n\n\nApp 4: Fuel Economy Dashboard"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-1-prepare-the-data",
+    "href": "Demo/Shiny-demo.html#step-1-prepare-the-data",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 1: prepare the data",
+    "text": "Step 1: prepare the data\nClean labels once, at the top of app.R, outside the server:\n\n\n\n\n\n\nCode outside the server runs once when the app starts\nCode inside the server runs for each user and re-runs when inputs change"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-2-the-layout-ui",
+    "href": "Demo/Shiny-demo.html#step-2-the-layout-ui",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 2: the layout (UI)",
+    "text": "Step 2: the layout (UI)\nThe skeleton, with details removed:\nui &lt;- page_sidebar(\n  title = \"Fuel Economy Dashboard\",\n  theme = bs_theme(bootswatch = \"flatly\", primary = \"#2C7FB8\"),\n\n  sidebar = sidebar(\n    selectInput(\"class\", \"Vehicle class\", ...),\n    checkboxGroupInput(\"year\", \"Model year\", ...),\n    checkboxGroupInput(\"drive\", \"Drive type\", ...),\n    sliderInput(\"cyl\", \"Cylinders\", ...)\n  ),\n\n  layout_columns(                                       # row 1\n    value_box(\"Cars selected\",       textOutput(\"n_cars\"),  ...),\n    value_box(\"Average highway MPG\", textOutput(\"avg_hwy\"), ...),\n    value_box(\"Average city MPG\",    textOutput(\"avg_cty\"), ...)\n  ),\n\n  layout_columns(col_widths = c(7, 5),                  # row 2\n    card(card_header(\"Bigger engines, lower mileage\"), plotOutput(\"scatter\")),\n    card(card_header(\"Highway MPG by manufacturer\"),   plotOutput(\"by_make\"))\n  ),\n\n  card(card_header(\"Top 10 most fuel-efficient models\"),  # row 3\n       tableOutput(\"top10\"))\n)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-3-one-shared-reactive-dataset",
+    "href": "Demo/Shiny-demo.html#step-3-one-shared-reactive-dataset",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 3: one shared reactive dataset",
+    "text": "Step 3: one shared reactive dataset\nfiltered &lt;- reactive({\n  data &lt;- cars |&gt;\n    filter(year  %in% input$year,\n           drive %in% input$drive,\n           cyl   &gt;= input$cyl[1],\n           cyl   &lt;= input$cyl[2])\n\n  if (input$class != \"All classes\") {\n    data &lt;- filter(data, class == input$class)\n  }\n  data\n})\n\nEvery value box, chart, and table uses filtered()\nChange one filter: the data is filtered once, then all 6 outputs update\ninput$cyl is a range slider, so it has two values: [1] and [2]"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#step-4-fill-in-the-outputs",
+    "href": "Demo/Shiny-demo.html#step-4-fill-in-the-outputs",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Step 4: fill in the outputs",
+    "text": "Step 4: fill in the outputs\n# Value boxes: just a number\noutput$n_cars  &lt;- renderText(nrow(filtered()))\noutput$avg_hwy &lt;- renderText(round(mean(filtered()$hwy), 1))\n\n# Charts: normal ggplot code using filtered()\noutput$scatter &lt;- renderPlot({\n  ggplot(filtered(), aes(displ, hwy, color = drive)) +\n    geom_jitter(size = 3, alpha = 0.7) +\n    labs(x = \"Engine size (liters)\", y = \"Highway MPG\")\n})\n\n# Table: normal dplyr code using filtered()\noutput$top10 &lt;- renderTable({\n  filtered() |&gt;\n    arrange(desc(hwy)) |&gt;\n    slice_head(n = 10)\n})\nPattern: every output is ordinary R code wrapped in a render*() function, using filtered() instead of the raw data."
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#live-demo-things-to-try",
+    "href": "Demo/Shiny-demo.html#live-demo-things-to-try",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Live demo: things to try",
+    "text": "Live demo: things to try\n\nPick suv: value boxes drop, the scatter shows the trade-off clearly\nUncheck 4WD: which brands disappear from the bar chart?\nSet cylinders to 4 only: what is the best highway MPG?\nChoose 2seater and Front only: the friendly “no cars match” message\nClick the expand icon on a chart card to go full screen\nCollapse the sidebar with the arrow\n\nAsk while demoing: which input triggered which output? Why did the table change but not the page layout?"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#app-4-full-code",
+    "href": "Demo/Shiny-demo.html#app-4-full-code",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "App 4: full code",
+    "text": "App 4: full code\n# ------------------------------------------------------------\n# App 4: Fuel Economy Dashboard (final product)\n# A polished but beginner-friendly bslib dashboard built on the\n# mpg dataset from ggplot2.\n#\n# Structure:\n#   sidebar      -&gt; filters (inputs)\n#   value boxes  -&gt; headline numbers\n#   cards        -&gt; two charts and a table\n#   reactive()   -&gt; one filtered dataset shared by every output\n#\n# Run it:  shiny::runApp(\"04-mpg-dashboard\")\n# ------------------------------------------------------------\n\nlibrary(shiny)\nlibrary(bslib)\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# ---- Data ----------------------------------------------------\ncars &lt;- mpg |&gt;\n  mutate(\n    drive = recode(drv, \"f\" = \"Front\", \"r\" = \"Rear\", \"4\" = \"4WD\"),\n    make  = tools::toTitleCase(manufacturer)\n  )\n\nall_classes &lt;- sort(unique(cars$class))\n\n# ---- Theme ---------------------------------------------------\nmy_theme &lt;- bs_theme(\n  version   = 5,\n  bootswatch = \"flatly\",\n  primary   = \"#2C7FB8\"\n)\n\n# Shared ggplot style so every chart looks consistent\ntheme_dash &lt;- theme_minimal(base_size = 14) +\n  theme(panel.grid.minor = element_blank(),\n        legend.position  = \"bottom\")\n\n# ---- UI ------------------------------------------------------\nui &lt;- page_sidebar(\n  title = \"Fuel Economy Dashboard\",\n  theme = my_theme,\n\n  sidebar = sidebar(\n    width = 280,\n\n    selectInput(\"class\", \"Vehicle class\",\n                choices  = c(\"All classes\", all_classes),\n                selected = \"All classes\"),\n\n    checkboxGroupInput(\"year\", \"Model year\",\n                       choices  = c(1999, 2008),\n                       selected = c(1999, 2008),\n                       inline   = TRUE),\n\n    checkboxGroupInput(\"drive\", \"Drive type\",\n                       choices  = c(\"Front\", \"Rear\", \"4WD\"),\n                       selected = c(\"Front\", \"Rear\", \"4WD\")),\n\n    sliderInput(\"cyl\", \"Cylinders\",\n                min = 4, max = 8, value = c(4, 8), step = 1),\n\n    hr(),\n    p(class = \"text-muted small\",\n      \"Data: ggplot2::mpg, EPA fuel economy for 38 popular models, 1999 and 2008.\")\n  ),\n\n  # Row 1: headline numbers\n  layout_columns(\n    fill = FALSE,\n    value_box(\n      title = \"Cars selected\",\n      value = textOutput(\"n_cars\"),\n      showcase = icon(\"car\"),\n      theme = \"primary\"\n    ),\n    value_box(\n      title = \"Average highway MPG\",\n      value = textOutput(\"avg_hwy\"),\n      showcase = icon(\"road\"),\n      theme = \"success\"\n    ),\n    value_box(\n      title = \"Average city MPG\",\n      value = textOutput(\"avg_cty\"),\n      showcase = icon(\"city\"),\n      theme = \"info\"\n    )\n  ),\n\n  # Row 2: two charts side by side\n  layout_columns(\n    col_widths = c(7, 5),\n    card(\n      full_screen = TRUE,\n      card_header(\"Bigger engines, lower mileage\"),\n      plotOutput(\"scatter\")\n    ),\n    card(\n      full_screen = TRUE,\n      card_header(\"Highway MPG by manufacturer\"),\n      plotOutput(\"by_make\")\n    )\n  ),\n\n  # Row 3: table of the most efficient cars\n  card(\n    card_header(\"Top 10 most fuel-efficient models (highway)\"),\n    tableOutput(\"top10\")\n  )\n)\n\n# ---- Server --------------------------------------------------\nserver &lt;- function(input, output, session) {\n\n  # One filtered dataset, reused by every output\n  filtered &lt;- reactive({\n    data &lt;- cars |&gt;\n      filter(year  %in% input$year,\n             drive %in% input$drive,\n             cyl   &gt;= input$cyl[1],\n             cyl   &lt;= input$cyl[2])\n\n    if (input$class != \"All classes\") {\n      data &lt;- filter(data, class == input$class)\n    }\n    data\n  })\n\n  # Friendly message when the filters remove every car\n  check_data &lt;- function() {\n    validate(need(nrow(filtered()) &gt; 0,\n                  \"No cars match these filters. Try widening them.\"))\n  }\n\n  # ---- Value boxes ----\n  output$n_cars  &lt;- renderText(nrow(filtered()))\n  output$avg_hwy &lt;- renderText({\n    check_data()\n    round(mean(filtered()$hwy), 1)\n  })\n  output$avg_cty &lt;- renderText({\n    check_data()\n    round(mean(filtered()$cty), 1)\n  })\n\n  # ---- Charts ----\n  output$scatter &lt;- renderPlot({\n    check_data()\n    ggplot(filtered(), aes(displ, hwy, color = drive)) +\n      geom_jitter(size = 3, alpha = 0.7, width = 0.05, height = 0.3) +\n      scale_color_manual(values = c(Front = \"#2C7FB8\", Rear = \"#E6550D\",\n                                    `4WD` = \"#31A354\")) +\n      labs(x = \"Engine size (liters)\", y = \"Highway MPG\", color = \"Drive\") +\n      theme_dash\n  })\n\n  output$by_make &lt;- renderPlot({\n    check_data()\n    filtered() |&gt;\n      group_by(make) |&gt;\n      summarise(hwy = mean(hwy)) |&gt;\n      ggplot(aes(x = hwy, y = reorder(make, hwy))) +\n      geom_col(fill = \"#2C7FB8\") +\n      geom_text(aes(label = round(hwy, 1)), hjust = -0.2, size = 4) +\n      scale_x_continuous(expand = expansion(mult = c(0, 0.15))) +\n      labs(x = \"Average highway MPG\", y = NULL) +\n      theme_dash\n  })\n\n  # ---- Table ----\n  output$top10 &lt;- renderTable({\n    check_data()\n    filtered() |&gt;\n      arrange(desc(hwy), desc(cty)) |&gt;\n      distinct(make, model, year, .keep_all = TRUE) |&gt;\n      slice_head(n = 10) |&gt;\n      transmute(Make = make, Model = model, Year = as.integer(year),\n                Class = class, Drive = drive,\n                `City MPG` = as.integer(cty), `Highway MPG` = as.integer(hwy))\n  }, striped = TRUE, hover = TRUE, width = \"100%\")\n}\n\nshinyApp(ui, server)"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#sharing-your-app-why-deployment",
+    "href": "Demo/Shiny-demo.html#sharing-your-app-why-deployment",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Sharing your app: why deployment?",
+    "text": "Sharing your app: why deployment?\n\nSo far the app only runs on your computer, while R is running\nClose RStudio and the app is gone\nTo share a link, the app must run on a server: a computer that is always on, with R installed\n\n\nDeploying = moving the app from your laptop to a server so anyone can open a link.\n\nOptions\n\n\n\n\n\n\n\n\nService\nWhat it is\nBest for\n\n\n\n\nshinyapps.io\nPosit’s hosting service, free tier available\nClass projects, portfolios\n\n\nPosit Connect\nHosting a company installs on its own servers\nWorkplaces\n\n\nShinylive\nRuns the app entirely in the browser, no R server\nSimple apps on static sites"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#deploying-to-shinyapps.io",
+    "href": "Demo/Shiny-demo.html#deploying-to-shinyapps.io",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Deploying to shinyapps.io",
+    "text": "Deploying to shinyapps.io\nOne-time setup\n\nCreate a free account at shinyapps.io\nInstall the deployment package: install.packages(\"rsconnect\")\nIn shinyapps.io go to Account &gt; Tokens, click Show, and copy the command:\n\nrsconnect::setAccountInfo(name   = \"your-account\",\n                          token  = \"XXXXXXXX\",\n                          secret = \"XXXXXXXX\")\nEvery deploy\n\nRStudio: click the blue Publish button next to Run App, or\nConsole:\n\nrsconnect::deployApp(\"apps/04-mpg-dashboard\")\n\nA few minutes later you get a link like https://your-account.shinyapps.io/04-mpg-dashboard/\nThe free tier limits the number of apps and active hours per month"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#deployment-gotchas",
+    "href": "Demo/Shiny-demo.html#deployment-gotchas",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Deployment gotchas",
+    "text": "Deployment gotchas\n\nUse relative paths: read.csv(\"data/cars.csv\"), never read.csv(\"C:/Users/me/Desktop/cars.csv\")\nKeep data inside the app folder: the server only receives what is in that folder\nLoad every package with library() at the top: this is how the server knows what to install\nNo install.packages() in app.R\nNever put passwords in your code: use environment variables for API keys and database logins\nTest locally first: if it does not run on your machine, it will not run on the server\nRead the logs: a gray “Disconnected from the server” screen means an R error; the logs on shinyapps.io tell you which one"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#bonus-shinylive-no-server-needed",
+    "href": "Demo/Shiny-demo.html#bonus-shinylive-no-server-needed",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Bonus: Shinylive (no server needed)",
+    "text": "Bonus: Shinylive (no server needed)\nShinylive runs R inside the browser using WebAssembly.\ninstall.packages(\"shinylive\")\n\n# convert an app folder into a static website folder\nshinylive::export(\"apps/03-hello-bslib\", \"site\")\n\n# preview it locally\nhttpuv::runStaticServer(\"site\")\n\nThe site/ folder can be hosted anywhere static files go (GitHub Pages, a Quarto website)\nA Quarto extension (quarto-ext/shinylive) can embed apps directly in a Quarto page\n\nBut remember Part 2: everything runs on the viewer’s machine, so\n\nAll data is downloaded to the browser (nothing private)\nNo live database connections or server secrets\nFirst load is slower, and not every R package is supported"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#key-takeaways",
+    "href": "Demo/Shiny-demo.html#key-takeaways",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Key takeaways",
+    "text": "Key takeaways\n\nA Shiny app = UI + server + shinyApp(ui, server)\nInputs are read with input$id; outputs are written with output$id &lt;- render*()\nReactivity: when an input changes, everything that uses it updates automatically\nreactive() computes shared results once and reuses them\nA dashboard shows the most important information at a glance\nUse a server when the app must compute, protect, or fetch something new\nbslib turns a Shiny app into a modern dashboard by changing only the UI\nDeploy to shinyapps.io so others can use your app with just a link"
+  },
+  {
+    "objectID": "Demo/Shiny-demo.html#practice-and-resources",
+    "href": "Demo/Shiny-demo.html#practice-and-resources",
+    "title": "Interactive Apps and Dashboards with Shiny",
+    "section": "Practice and resources",
+    "text": "Practice and resources\nPractice with the lecture apps\n\nApp 1: add a selectInput() that changes the histogram color\nApp 3: add a third value box showing the busiest day\nApp 4: add a selectInput() for manufacturer, or a card with a boxplot of hwy by class\nDeploy App 3 or App 4 to shinyapps.io and share the link\n\nResources\n\nShiny docs and gallery: shiny.posit.co\nbslib docs: rstudio.github.io/bslib\nMastering Shiny by Hadley Wickham (free online): mastering-shiny.org\nFont Awesome icons: fontawesome.com/icons"
+  },
+  {
+    "objectID": "Analysis/explore_atus.html",
+    "href": "Analysis/explore_atus.html",
+    "title": "American Time Use Survey: Exploratory Analysis",
+    "section": "",
+    "text": "Code\n# Load packages\n\nlibrary(tidyverse)\nlibrary(ggplot2)\nlibrary(ggthemes)\nlibrary(plotly)\nlibrary(dplyr)\n\n\nWarning message:\n\"package 'ggthemes' was built under R version 4.6.2\"\n#======================================== # American Time Use Survey (ATUS) | 2003-2025 # Data Visualization Semester Project # Maxell Taylor mct115 # Georgetown University # # Data Source: U.S. Breau of Labor Statistics # https://www.bls.gov/tus/data.htm# # # Exploratory analysis of American time-use data #========================================\nCode\n\n# Import data\n\n# Total minutes per activity per respondent for one day by demographic\natus_sum &lt;- read_csv(\n  \"data/raw/atussum_0325.dat\",\n  col_types = cols(\n    TUCASEID = col_character(),\n    .default = col_guess()\n  )\n)\n\n# Additional respondent info such as employment, earnings, education\natus_resp &lt;- read_csv(\n  \"data/raw/atusresp_0325.dat\",\n  col_types = cols(\n    TUCASEID = col_character(),\n    .default = col_guess()\n  )\n)\n\n# Individual activities with stop time + duration\natus_act &lt;- read_csv(\n  \"data/raw/atusact_0325.dat\",\n  col_types = cols(\n    TUCASEID = col_character(),\n    .default = col_guess()\n  )\n)\nCode\n# Initial exploration\n\n# Dimensions\ndim(atus_sum)  # 258954 x 456\ndim(atus_resp) # 258954 x 133\n\n# Column names --&gt; join by TUCASEID\nnames(atus_sum)\nnames(atus_resp)\n\n# Preview\nhead(atus_sum)\nhead(atus_resp)\n\n\n\n258954456\n\n\n\n258954133\n\n\n\n'TUCASEID''GEMETSTA''GTMETSTA''PEEDUCA''PEHSPNON''PTDTRACE''TEAGE''TELFS''TEMJOT''TESCHENR''TESCHLVL''TESEX''TESPEMPNOT''TRCHILDNUM''TRDPFTPT''TRERNWA''TRHOLIDAY''TRSPFTPT''TRSPPRES''TRYHHCHILD''TUDIARYDAY''TUFNWGTP''TEHRUSLT''TUYEAR''TU20FWGT''t010101''t010102''t010199''t010201''t010299''t010301''t010399''t010401''t010499''t010501''t010599''t019999''t020101''t020102''t020103''t020104''t020199''t020201''t020202''t020203''t020299''t020301''t020302''t020303''t020399''t020401''t020402''t020499''t020501''t020502''t020599''t020681''t020699''t020701''t020799''t020801''t020899''t020901''t020902''t020903''t020904''t020905''t020999''t029999''t030101''t030102''t030103''t030104''t030105''t030108''t030109''t030110''t030111''t030112''t030186''t030199''t030201''t030202''t030203''t030204''t030299''t030301''t030302''t030303''t030399''t030401''t030402''t030403''t030404''t030405''t030499''t030501''t030502''t030503''t030504''t030599''t039999''t040101''t040102''t040103''t040104''t040105''t040108''t040109''t040110''t040111''t040112''t040186''t040199''t040201''t040202''t040203''t040204''t040299''t040301''t040302''t040303''t040399''t040401''t040402''t040403''t040404''t040405''t040499''t040501''t040502''t040503''t040504''t040505''t040506''t040507''t040508''t040599''t049999''t050101''t050102''t050103''t050189''t050201''t050202''t050203''t050204''t050289''t050301''t050302''t050303''t050304''t050389''t050403''t050404''t050405''t050481''t050499''t059999''t060101''t060102''t060103''t060104''t060199''t060201''t060202''t060203''t060289''t060301''t060302''t060303''t060399''t060401''t060402''t060403''t060499''t069999''t070101''t070102''t070103''t070104''t070105''t070199''t070201''t070299''t070301''t070399''t079999''t080101''t080102''t080199''t080201''t080202''t080203''t080299''t080301''t080302''t080399''t080401''t080402'⋯'t120303''t120304''t120305''t120306''t120307''t120308''t120309''t120310''t120311''t120312''t120313''t120399''t120401''t120402''t120403''t120404''t120405''t120499''t120501''t120502''t120503''t120504''t120599''t129999''t130101''t130102''t130103''t130104''t130105''t130106''t130107''t130108''t130109''t130110''t130111''t130112''t130113''t130114''t130115''t130116''t130117''t130118''t130119''t130120''t130121''t130122''t130123''t130124''t130125''t130126''t130127''t130128''t130129''t130130''t130131''t130132''t130133''t130134''t130135''t130136''t130199''t130201''t130202''t130203''t130204''t130205''t130206''t130207''t130208''t130209''t130210''t130211''t130212''t130213''t130214''t130215''t130216''t130217''t130218''t130219''t130220''t130221''t130222''t130223''t130224''t130225''t130226''t130227''t130228''t130229''t130230''t130231''t130232''t130299''t130301''t130302''t130399''t130401''t130402''t130499''t139999''t140101''t140102''t140103''t140104''t140105''t149999''t150101''t150102''t150103''t150104''t150105''t150106''t150199''t150201''t150202''t150203''t150204''t150299''t150301''t150302''t150399''t150401''t150402''t150499''t150501''t150599''t150601''t150602''t150699''t159989''t160101''t160102''t160103''t160104''t160105''t160106''t160107''t160108''t169989''t180101''t180199''t180280''t180381''t180382''t180399''t180481''t180482''t180499''t180501''t180502''t180589''t180601''t180682''t180699''t180701''t180782''t180801''t180802''t180803''t180804''t180805''t180806''t180807''t180899''t180901''t180902''t180903''t180904''t180905''t180999''t181002''t181081''t181099''t181101''t181199''t181201''t181202''t181204''t181283''t181299''t181301''t181302''t181399''t181401''t181499''t181501''t181599''t181601''t181699''t181801''t181899''t189999''t500101''t500103''t500104''t500105''t500106''t500107''t509989'\n\n\n\n'TUCASEID''TULINENO''TESPUHRS''TRDTIND1''TRDTOCC1''TRERNHLY''TRERNUPD''TRHERNAL''TRHHCHILD''TRIMIND1''TRMJIND1''TRMJOCC1''TRMJOCGR''TRNHHCHILD''TRNUMHOU''TROHHCHILD''TRTALONE''TRTCC''TRTHHFAMILY''TRTNOCHILD''TRTNOHH''TRTO''TRTOHH''TRTOHHCHILD''TRTONHH''TRTONHHCHILD''TRTSPONLY''TRTSPOUSE''TRTUNMPART''TRWERNAL''TTHR''TTOT''TTWK''TUABSOT''TUYEAR''TEABSRSN''TEERN''TEERNH1O''TEERNH2''TEERNHRO''TEERNHRY''TEERNPER''TEERNRT''TEERNUOT''TEERNWKP''TEHRFTPT''TEHRUSL1''TEHRUSL2''TEIO1COW''TEIO1ICD''TEIO1OCD''TELAYAVL''TELAYLK''TELKAVL''TELKM1''TERET1''TESCHFT''TUBUS''TUBUS1''TUBUS2OT''TUBUSL1''TUBUSL2''TUBUSL3''TUBUSL4''TUCC2''TUCC4''TUFWK''TUIO1MFG''TUIODP1''TUIODP2''TUIODP3''TULAY''TULAY6M''TULAYAVR''TULAYDT''TULK''TULKAVR''TULKDK1''TULKDK2''TULKDK3''TULKDK4''TULKM2''TULKM3''TULKM4''TULKM5''TULKM6''TULKPS1''TULKPS2''TULKPS3''TULKPS4''TUMONTH''TRTCCC''TRTCCTOT''TRTCHILD''TRTCOC''TRTFAMILY''TRTFRIEND''TRTHH''TUDIS2''TURETOT''TUSPABS''TUSPUSFT''TUSPWK''TREMODR''TUCC9''TUDIARYDATE''TUDIS''TUDIS1''TRCHILDNUM''TUDIARYDAY''TRERNWA''TRHOLIDAY''TRSPFTPT''TRSPPRES''TRDPFTPT''TUFNWGTP''TESPEMPNOT''TESCHLVL''TESCHENR''TEMJOT''TELFS''TEHRUSLT''TRYHHCHILD''TRWBMODR''TRTALONE_WK''TRTCCC_WK''TRLVMODR''TRTEC''TUECYTD''TUELDER''TUELFREQ''TUELNUM''TU20FWGT'\n\n\n\nA tibble: 6 × 456\n\n\nTUCASEID\nGEMETSTA\nGTMETSTA\nPEEDUCA\nPEHSPNON\nPTDTRACE\nTEAGE\nTELFS\nTEMJOT\nTESCHENR\n⋯\nt181801\nt181899\nt189999\nt500101\nt500103\nt500104\nt500105\nt500106\nt500107\nt509989\n\n\n&lt;chr&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n⋯\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n\n\n\n\n20030100013280\n1\n-1\n44\n2\n2\n60\n2\n2\n-1\n⋯\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n20030100013344\n2\n-1\n40\n2\n1\n41\n1\n2\n2\n⋯\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n20030100013352\n1\n-1\n41\n2\n1\n26\n2\n2\n2\n⋯\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n20030100013848\n2\n-1\n39\n2\n2\n36\n4\n-1\n2\n⋯\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n20030100014165\n2\n-1\n45\n2\n1\n51\n1\n2\n-1\n⋯\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n20030100014169\n2\n-1\n43\n2\n1\n32\n2\n2\n1\n⋯\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n\n\n\n\nA tibble: 6 × 133\n\n\nTUCASEID\nTULINENO\nTESPUHRS\nTRDTIND1\nTRDTOCC1\nTRERNHLY\nTRERNUPD\nTRHERNAL\nTRHHCHILD\nTRIMIND1\n⋯\nTRWBMODR\nTRTALONE_WK\nTRTCCC_WK\nTRLVMODR\nTRTEC\nTUECYTD\nTUELDER\nTUELFREQ\nTUELNUM\nTU20FWGT\n\n\n&lt;chr&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n⋯\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n\n\n\n\n20030100013280\n1\n-1\n40\n8\n2200\n1\n1\n2\n15\n⋯\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n\n\n20030100013344\n1\n50\n16\n16\n-1\n1\n-1\n1\n5\n⋯\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n\n\n20030100013352\n1\n-1\n43\n15\n1250\n0\n0\n2\n16\n⋯\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n\n\n20030100013848\n1\n40\n-1\n-1\n-1\n-1\n-1\n1\n-1\n⋯\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n\n\n20030100014165\n1\n-1\n42\n10\n-1\n-1\n-1\n1\n16\n⋯\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n\n\n20030100014169\n1\n40\n40\n8\n-1\n1\n-1\n1\n15\n⋯\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\n-1\nCode\n# Check duplicate respondent IDs --&gt; none\n\natus_sum |&gt; count(TUCASEID) |&gt; filter(n &gt; 1)\natus_resp |&gt; count(TUCASEID) |&gt; filter(n &gt; 1)\n\n# df is way to big to parse visually, split as follows\n\n# Identify activity columns\n\n# used ChatGPT for pattern syntax: ^ = beginning of string,\n# {6} = repetitions of pattern, $ = end of string\nactivity_columns &lt;- names(atus_sum)[\n  grepl(\"^t[0-9]{6}$\", names(atus_sum))\n]\n\nlength(activity_columns)\nhead(activity_columns)\n\nrespondent_columns &lt;- setdiff(\n  names(atus_sum),\n  activity_columns\n)\nrespondent_columns\n\n\n\nA spec_tbl_df: 0 × 2\n\n\nTUCASEID\nn\n\n\n&lt;chr&gt;\n&lt;int&gt;\n\n\n\n\n\n\n\n\nA spec_tbl_df: 0 × 2\n\n\nTUCASEID\nn\n\n\n&lt;chr&gt;\n&lt;int&gt;\n\n\n\n\n\n\n\n431\n\n\n\n't010101''t010102''t010199''t010201''t010299''t010301'\n\n\n\n'TUCASEID''GEMETSTA''GTMETSTA''PEEDUCA''PEHSPNON''PTDTRACE''TEAGE''TELFS''TEMJOT''TESCHENR''TESCHLVL''TESEX''TESPEMPNOT''TRCHILDNUM''TRDPFTPT''TRERNWA''TRHOLIDAY''TRSPFTPT''TRSPPRES''TRYHHCHILD''TUDIARYDAY''TUFNWGTP''TEHRUSLT''TUYEAR''TU20FWGT'\nCode\n# Data preperation\n\n# Respondent columns not already in summary\nresp_extra &lt;- setdiff(\n    names(atus_resp),\n    names(atus_sum)\n)\nlength(resp_extra) # 115\n\n# Join additional information using TUCASEID\natus_full &lt;- atus_sum |&gt;\n  left_join(\n    atus_resp |&gt;\n      select(TUCASEID, all_of(resp_extra)),\n    by = \"TUCASEID\",\n    relationship = \"one-to-one\"\n  )\n\n# Verify\ndim(atus_full) # 258954 x 571\n\n# Check for unmatched respondent IDs \nnrow(anti_join(atus_sum, atus_resp, by = \"TUCASEID\")) # = 0, so verified\n\n\n115\n\n\n\n258954571\n\n\n0\nCode\n# Respondent characteristics exploration\n\n# respondents per year\natus_sum |&gt; count(TUYEAR)\n\n# Age distribution\nsummary(atus_sum$TEAGE)\n\np_age &lt;- ggplot(atus_sum, aes(x = TEAGE)) +\n  geom_histogram(binwidth = 5, fill = \"steelblue\", color = \"white\") +\n  labs(\n    title = \"Age Distribution of ATUS Respondents\",\n    x = \"Age\",\n    y = \"Number of respondents\"\n  ) +\n  theme_bw()\n\np_age\n\n# Sex distribution\natus_sum |&gt; count(TESEX)\n# 1 = male, 2 = female\n# 114974 male (44.4%) vs 143980 female (55.6%)\n\n\n\nA spec_tbl_df: 23 × 2\n\n\nTUYEAR\nn\n\n\n&lt;dbl&gt;\n&lt;int&gt;\n\n\n\n\n2003\n20720\n\n\n2004\n13973\n\n\n2005\n13038\n\n\n2006\n12943\n\n\n2007\n12248\n\n\n2008\n12723\n\n\n2009\n13133\n\n\n2010\n13260\n\n\n2011\n12479\n\n\n2012\n12443\n\n\n2013\n11385\n\n\n2014\n11592\n\n\n2015\n10905\n\n\n2016\n10493\n\n\n2017\n10223\n\n\n2018\n9593\n\n\n2019\n9435\n\n\n2020\n8782\n\n\n2021\n9087\n\n\n2022\n8136\n\n\n2023\n8548\n\n\n2024\n7669\n\n\n2025\n6146\n\n\n\n\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  15.00   34.00   47.00   48.45   63.00   85.00 \n\n\n\nA spec_tbl_df: 2 × 2\n\n\nTESEX\nn\n\n\n&lt;dbl&gt;\n&lt;int&gt;\n\n\n\n\n1\n114974\n\n\n2\n143980\nCode\n# Activity variable inventory\n\n\nactivity_inventory &lt;- tibble(\n  code = activity_columns, # breaks each tabcdef into parasable pices\n  #broad category (e.g., 01 = Personal Care Activities, 02 = Household activities)\n  tier_1 = substr(activity_columns, 2, 3),\n  #sub-category (e.g., 0101 = sleeping, 0102 = grooming)\n  tier_2 = substr(activity_columns, 2, 5),\n  #specific-activity (e.g., 010101 = sleeping, 010102 = sleeplessness)\n  tier_3 = substr(activity_columns, 2, 7)\n)\n\n\n# How many activity codes per broad category?\nactivity_inventory |&gt;\n  count(tier_1, name = \"n_codes\") |&gt;\n  arrange(tier_1)\n\n# Examine\nhead(activity_inventory, 20) # utilize Analysis\\Data\\Raw\\lexiconnoex0325.pdf\n\n\n\nA tibble: 18 × 2\n\n\ntier_1\nn_codes\n\n\n&lt;chr&gt;\n&lt;int&gt;\n\n\n\n\n01\n12\n\n\n02\n32\n\n\n03\n33\n\n\n04\n37\n\n\n05\n20\n\n\n06\n18\n\n\n07\n11\n\n\n08\n26\n\n\n09\n18\n\n\n10\n12\n\n\n11\n5\n\n\n12\n31\n\n\n13\n77\n\n\n14\n6\n\n\n15\n24\n\n\n16\n9\n\n\n18\n53\n\n\n50\n7\n\n\n\n\n\n\nA tibble: 20 × 4\n\n\ncode\ntier_1\ntier_2\ntier_3\n\n\n&lt;chr&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n\n\n\n\nt010101\n01\n0101\n010101\n\n\nt010102\n01\n0101\n010102\n\n\nt010199\n01\n0101\n010199\n\n\nt010201\n01\n0102\n010201\n\n\nt010299\n01\n0102\n010299\n\n\nt010301\n01\n0103\n010301\n\n\nt010399\n01\n0103\n010399\n\n\nt010401\n01\n0104\n010401\n\n\nt010499\n01\n0104\n010499\n\n\nt010501\n01\n0105\n010501\n\n\nt010599\n01\n0105\n010599\n\n\nt019999\n01\n0199\n019999\n\n\nt020101\n02\n0201\n020101\n\n\nt020102\n02\n0201\n020102\n\n\nt020103\n02\n0201\n020103\n\n\nt020104\n02\n0201\n020104\n\n\nt020199\n02\n0201\n020199\n\n\nt020201\n02\n0202\n020201\n\n\nt020202\n02\n0202\n020202\n\n\nt020203\n02\n0202\n020203\nCode\n# Activity variable profiles\n\n# table describing the structure of data\nactivity_profile &lt;- map_dfr(activity_columns, function(code) {\n  x &lt;- atus_full[[code]]\n\n  tibble(\n    code = code,\n    # number of respondents with positive minutes for activity\n    n_positive = sum(x &gt; 0, na.rm = TRUE),\n    # Percentage of respondents with nonmissing values who recorded positive minutes\n    pct_positive = round(mean(x &gt; 0, na.rm = TRUE) * 100, 2),\n    n_missing = sum(is.na(x)),\n    # for respondent variables: -1 = blank, -2 = Don't know, -3 = Refused\n    n_negative = sum(x &lt; 0, na.rm = TRUE),\n    n_distinct = n_distinct(x)\n  )\n})\n\n# Combine with activity hierarchy\nactivity_profile &lt;- activity_profile |&gt;\n  left_join(activity_inventory, by = \"code\")\n\n# Most frequently recorded activities\nactivity_profile |&gt;\n  arrange(desc(n_positive)) |&gt;\n  head(15)\n\n# Least frequently recorded activities\nactivity_profile |&gt;\n  filter(n_positive &gt; 0) |&gt;\n  arrange(n_positive) |&gt;\n  head(15)\n\n# How many codes have no positive observations?\nsum(activity_profile$n_positive == 0) #5\nactivity_profile |&gt; filter(n_positive == 0)\n\n\n\nA tibble: 15 × 9\n\n\ncode\nn_positive\npct_positive\nn_missing\nn_negative\nn_distinct\ntier_1\ntier_2\ntier_3\n\n\n&lt;chr&gt;\n&lt;int&gt;\n&lt;dbl&gt;\n&lt;int&gt;\n&lt;int&gt;\n&lt;int&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n\n\n\n\nt010101\n258589\n99.86\n0\n0\n1175\n01\n0101\n010101\n\n\nt110101\n247373\n95.53\n0\n0\n475\n11\n1101\n110101\n\n\nt120303\n206559\n79.77\n0\n0\n1125\n12\n1203\n120303\n\n\nt010201\n200284\n77.34\n0\n0\n315\n01\n0102\n010201\n\n\nt020201\n143062\n55.25\n0\n0\n436\n02\n0202\n020201\n\n\nt120101\n91962\n35.51\n0\n0\n726\n12\n1201\n120101\n\n\nt050101\n89684\n34.63\n0\n0\n1067\n05\n0501\n050101\n\n\nt180782\n79604\n30.74\n0\n0\n424\n18\n1807\n180782\n\n\nt180501\n70379\n27.18\n0\n0\n338\n18\n1805\n180501\n\n\nt020101\n69561\n26.86\n0\n0\n574\n02\n0201\n020101\n\n\nt020203\n61792\n23.86\n0\n0\n218\n02\n0202\n020203\n\n\nt120312\n61666\n23.81\n0\n0\n631\n12\n1203\n120312\n\n\nt181101\n60217\n23.25\n0\n0\n327\n18\n1811\n181101\n\n\nt070104\n57652\n22.26\n0\n0\n436\n07\n0701\n070104\n\n\nt120301\n50463\n19.49\n0\n0\n717\n12\n1203\n120301\n\n\n\n\n\n\nA tibble: 15 × 9\n\n\ncode\nn_positive\npct_positive\nn_missing\nn_negative\nn_distinct\ntier_1\ntier_2\ntier_3\n\n\n&lt;chr&gt;\n&lt;int&gt;\n&lt;dbl&gt;\n&lt;int&gt;\n&lt;int&gt;\n&lt;int&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n\n\n\n\nt010599\n1\n0\n0\n0\n2\n01\n0105\n010599\n\n\nt070399\n1\n0\n0\n0\n2\n07\n0703\n070399\n\n\nt100499\n1\n0\n0\n0\n2\n10\n1004\n100499\n\n\nt040204\n2\n0\n0\n0\n3\n04\n0402\n040204\n\n\nt130111\n2\n0\n0\n0\n3\n13\n1301\n130111\n\n\nt130201\n2\n0\n0\n0\n3\n13\n1302\n130201\n\n\nt130211\n2\n0\n0\n0\n3\n13\n1302\n130211\n\n\nt130230\n2\n0\n0\n0\n3\n13\n1302\n130230\n\n\nt140104\n2\n0\n0\n0\n3\n14\n1401\n140104\n\n\nt181199\n2\n0\n0\n0\n3\n18\n1811\n181199\n\n\nt050405\n3\n0\n0\n0\n4\n05\n0504\n050405\n\n\nt080199\n3\n0\n0\n0\n4\n08\n0801\n080199\n\n\nt080801\n3\n0\n0\n0\n2\n08\n0808\n080801\n\n\nt119999\n3\n0\n0\n0\n3\n11\n1199\n119999\n\n\nt130231\n3\n0\n0\n0\n4\n13\n1302\n130231\n\n\n\n\n\n5\n\n\n\nA tibble: 5 × 9\n\n\ncode\nn_positive\npct_positive\nn_missing\nn_negative\nn_distinct\ntier_1\ntier_2\ntier_3\n\n\n&lt;chr&gt;\n&lt;int&gt;\n&lt;dbl&gt;\n&lt;int&gt;\n&lt;int&gt;\n&lt;int&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n&lt;chr&gt;\n\n\n\n\nt080899\n0\n0\n0\n0\n1\n08\n0808\n080899\n\n\nt110199\n0\n0\n0\n0\n1\n11\n1101\n110199\n\n\nt130208\n0\n0\n0\n0\n1\n13\n1302\n130208\n\n\nt130228\n0\n0\n0\n0\n1\n13\n1302\n130228\n\n\nt130499\n0\n0\n0\n0\n1\n13\n1304\n130499\nCode\n# Respondent variable inventory\n\n# 25 non-activity variables from atus_sum\n# + 115 additional variables from atus_resp\nresp_columns &lt;- c(respondent_columns, resp_extra)\n\nresp_inventory &lt;- tibble(\n  variable = resp_columns,\n  type = sapply( # apply function to each column\n    atus_full[resp_columns], # the 140 non-activity variables\n    function(x) class(x)[1] # returns the first class of x = atus_full[...]\n  ) |&gt; unname()\n)\n\nresp_inventory\n\n\n\nA tibble: 140 × 2\n\n\nvariable\ntype\n\n\n&lt;chr&gt;\n&lt;chr&gt;\n\n\n\n\nTUCASEID\ncharacter\n\n\nGEMETSTA\nnumeric\n\n\nGTMETSTA\nnumeric\n\n\nPEEDUCA\nnumeric\n\n\nPEHSPNON\nnumeric\n\n\nPTDTRACE\nnumeric\n\n\nTEAGE\nnumeric\n\n\nTELFS\nnumeric\n\n\nTEMJOT\nnumeric\n\n\nTESCHENR\nnumeric\n\n\nTESCHLVL\nnumeric\n\n\nTESEX\nnumeric\n\n\nTESPEMPNOT\nnumeric\n\n\nTRCHILDNUM\nnumeric\n\n\nTRDPFTPT\nnumeric\n\n\nTRERNWA\nnumeric\n\n\nTRHOLIDAY\nnumeric\n\n\nTRSPFTPT\nnumeric\n\n\nTRSPPRES\nnumeric\n\n\nTRYHHCHILD\nnumeric\n\n\nTUDIARYDAY\nnumeric\n\n\nTUFNWGTP\nnumeric\n\n\nTEHRUSLT\nnumeric\n\n\nTUYEAR\nnumeric\n\n\nTU20FWGT\nnumeric\n\n\nTULINENO\nnumeric\n\n\nTESPUHRS\nnumeric\n\n\nTRDTIND1\nnumeric\n\n\nTRDTOCC1\nnumeric\n\n\nTRERNHLY\nnumeric\n\n\n⋮\n⋮\n\n\nTULKPS2\nnumeric\n\n\nTULKPS3\nnumeric\n\n\nTULKPS4\nnumeric\n\n\nTUMONTH\nnumeric\n\n\nTRTCCC\nnumeric\n\n\nTRTCCTOT\nnumeric\n\n\nTRTCHILD\nnumeric\n\n\nTRTCOC\nnumeric\n\n\nTRTFAMILY\nnumeric\n\n\nTRTFRIEND\nnumeric\n\n\nTRTHH\nnumeric\n\n\nTUDIS2\nnumeric\n\n\nTURETOT\nnumeric\n\n\nTUSPABS\nnumeric\n\n\nTUSPUSFT\nnumeric\n\n\nTUSPWK\nnumeric\n\n\nTREMODR\nnumeric\n\n\nTUCC9\nnumeric\n\n\nTUDIARYDATE\nnumeric\n\n\nTUDIS\nnumeric\n\n\nTUDIS1\nnumeric\n\n\nTRWBMODR\nnumeric\n\n\nTRTALONE_WK\nnumeric\n\n\nTRTCCC_WK\nnumeric\n\n\nTRLVMODR\nnumeric\n\n\nTRTEC\nnumeric\n\n\nTUECYTD\nnumeric\n\n\nTUELDER\nnumeric\n\n\nTUELFREQ\nnumeric\n\n\nTUELNUM\nnumeric\nCode\n# Examine selected respondent variables\n\n# KEY:\n# Analysis\\Data\\Raw\\atuscpscodebk0325.pdf\n# Analysis\\Data\\Raw\\atusintcodebk0325.interview.pdf\n# e.g., PEEDUCA --&gt; p = personal, e = edited, educa = education\n# for respondent variables: -1 = blank, -2 = Don't know, -3 = Refused\n\n# Education\natus_full |&gt; count(PEEDUCA, sort = TRUE)\n# 31 = less than 1st grade --&gt; 46 = Doctoral degree\n# 39 = HS Diploma, 43 = Bachelor's\n\n# Labor force status\natus_full |&gt; count(TELFS, sort = TRUE)\n# 1 = employed at work --&gt; 5 = not in labor force\n\n# School enrollment\natus_full |&gt; count(TESCHENR, sort = TRUE)\n# 1 = yes, 2 = no\n# -1 = blank, -3 = refused\n\n\n\nA spec_tbl_df: 16 × 2\n\n\nPEEDUCA\nn\n\n\n&lt;dbl&gt;\n&lt;int&gt;\n\n\n\n\n39\n65287\n\n\n43\n54409\n\n\n40\n44412\n\n\n44\n25057\n\n\n42\n13502\n\n\n41\n11169\n\n\n37\n8025\n\n\n36\n7660\n\n\n35\n6690\n\n\n34\n5533\n\n\n46\n5035\n\n\n45\n4089\n\n\n33\n3176\n\n\n38\n2887\n\n\n32\n1578\n\n\n31\n445\n\n\n\n\n\n\nA spec_tbl_df: 5 × 2\n\n\nTELFS\nn\n\n\n&lt;dbl&gt;\n&lt;int&gt;\n\n\n\n\n1\n151737\n\n\n5\n89393\n\n\n4\n9663\n\n\n2\n6956\n\n\n3\n1205\n\n\n\n\n\n\nA spec_tbl_df: 4 × 2\n\n\nTESCHENR\nn\n\n\n&lt;dbl&gt;\n&lt;int&gt;\n\n\n\n\n-1\n119947\n\n\n2\n116468\n\n\n1\n22536\n\n\n-3\n3\nCode\n# Data availablity by year\n\nselected_code &lt;- \"t010101\"\n\natus_full |&gt;\n  group_by(TUYEAR) |&gt;\n  summarise(\n    n = n(),\n    pct_missing = round(\n      mean(is.na(.data[[selected_code]])) * 100, 2\n    ),\n    pct_positive = round(\n      mean(.data[[selected_code]] &gt; 0, na.rm = TRUE) * 100, 2\n    ),\n    .groups = \"drop\"\n  )\n\n# HOWEVER: Disclaimer on 2020\n\n\n\nA tibble: 23 × 4\n\n\nTUYEAR\nn\npct_missing\npct_positive\n\n\n&lt;dbl&gt;\n&lt;int&gt;\n&lt;dbl&gt;\n&lt;dbl&gt;\n\n\n\n\n2003\n20720\n0\n99.83\n\n\n2004\n13973\n0\n99.90\n\n\n2005\n13038\n0\n99.87\n\n\n2006\n12943\n0\n99.89\n\n\n2007\n12248\n0\n99.87\n\n\n2008\n12723\n0\n99.89\n\n\n2009\n13133\n0\n99.90\n\n\n2010\n13260\n0\n99.83\n\n\n2011\n12479\n0\n99.90\n\n\n2012\n12443\n0\n99.86\n\n\n2013\n11385\n0\n99.88\n\n\n2014\n11592\n0\n99.86\n\n\n2015\n10905\n0\n99.82\n\n\n2016\n10493\n0\n99.83\n\n\n2017\n10223\n0\n99.78\n\n\n2018\n9593\n0\n99.83\n\n\n2019\n9435\n0\n99.86\n\n\n2020\n8782\n0\n99.86\n\n\n2021\n9087\n0\n99.87\n\n\n2022\n8136\n0\n99.80\n\n\n2023\n8548\n0\n99.88\n\n\n2024\n7669\n0\n99.86\n\n\n2025\n6146\n0\n99.85\nDisclaimer on 2020\nhttps://www.bls.gov/tus/data/datafiles-0325.htm?utm_source=chatgpt.com\nCode\n# Exclude 2020 for when comparison requires full year\natus_complete_years &lt;- atus_full |&gt;\n  filter(TUYEAR != 2020)\n\n# Verify\natus_complete_years |&gt;\n  count(TUYEAR)\n\n\n\nA spec_tbl_df: 22 × 2\n\n\nTUYEAR\nn\n\n\n&lt;dbl&gt;\n&lt;int&gt;\n\n\n\n\n2003\n20720\n\n\n2004\n13973\n\n\n2005\n13038\n\n\n2006\n12943\n\n\n2007\n12248\n\n\n2008\n12723\n\n\n2009\n13133\n\n\n2010\n13260\n\n\n2011\n12479\n\n\n2012\n12443\n\n\n2013\n11385\n\n\n2014\n11592\n\n\n2015\n10905\n\n\n2016\n10493\n\n\n2017\n10223\n\n\n2018\n9593\n\n\n2019\n9435\n\n\n2021\n9087\n\n\n2022\n8136\n\n\n2023\n8548\n\n\n2024\n7669\n\n\n2025\n6146"
+  },
+  {
+    "objectID": "Analysis/explore_atus.html#main-dataframes",
+    "href": "Analysis/explore_atus.html#main-dataframes",
+    "title": "American Time Use Survey: Exploratory Analysis",
+    "section": "1.1 1. Main Dataframes",
+    "text": "1.1 1. Main Dataframes\n\n\n\n\n\n\n\n\nObject\nContents\nUse\n\n\n\n\natus_sum\nOriginal Activity Summary: 258,954 rows x 456 columns\nExploring activity durations and basic respondent info\n\n\natus_resp\nOriginal Respondent file: 258,954 x 133\nExamining additional respondent variables\n\n\natus_act\nOriginal Activity file\nAnalyzing activity episodes rather than daily totals\n\n\natus_full\nActivity Summary + 115 additional respondent columns: 258.954 x 571\nMain dataset for analyses requiring both activity and respondent info\n\n\natus_complete_years\natus_full excluding respondents surveyed in 2020\nComparisons across/between complete calandar years\n\n\n\nImportant: - ALL original datasets unchanged - atus_sum and atus_resp joined using TUCASEID, with one-to-one relationship and no unmatched IDs - atus_act has multiple records per respondent and should NOT be joined directly without accounting for this - atus_complete_years excludes 2020 due to pandemic-related interruption in data collection (see above disclaimer)"
+  },
+  {
+    "objectID": "Analysis/explore_atus.html#column-reference-objects",
+    "href": "Analysis/explore_atus.html#column-reference-objects",
+    "title": "American Time Use Survey: Exploratory Analysis",
+    "section": "1.2 2. Column Reference Objects",
+    "text": "1.2 2. Column Reference Objects\n\n\n\n\n\n\n\n\nObject\nContents\nUsage\n\n\n\n\nactivity_columns\nVector of 431 activity-duration column names\nSelect or loop through activity variables\n\n\nrespondent_columns\nVector of 25 non-activity column names from atus_sum\nIdentify original respondent variables\n\n\nresp_extra\nVector of 115 columns unique to atus_resp\nIdentify additional respondent information\n\n\nresp_columns\nCombined vector of 140 non-activity column names\nReference ALL respondent variables in atus_full"
+  },
+  {
+    "objectID": "Analysis/explore_atus.html#inventory-and-profile-tables",
+    "href": "Analysis/explore_atus.html#inventory-and-profile-tables",
+    "title": "American Time Use Survey: Exploratory Analysis",
+    "section": "1.3 3. Inventory and Profile Tables",
+    "text": "1.3 3. Inventory and Profile Tables\n\n1.3.1 activity_inventory\nOne row per activity code, containing: - code: Original ATUS activity variable name - tier_1: Broad activity category (first two digits) - tier_2: Subcategory (first four digits) - tier_3: Specific activity (all six digits)\nUse: Understanding the activity classification hierarchy, and locating codes in the Activity Lexicon\n\n\n1.3.2 activity_profile\nOne row per acticity code, containing: - code: ATUS activity variable - n_positive: Number of respondents reporting positive minutes - pct_positive: Percentage of nonissing observations reporting positive minutes - n_missing: Number of missing values - n_negative: Number of negative values (see above key) - n_distinct: Number of distinct recorded values - tier_1, tier_2, tier_3: Activity classification hierarchy\nUse: Identifying common/rare activities, checking data completeness, investigating unusual values\n\n\n1.3.3 resp_inventory\nOne row per non-activity variable, containing: - variable: Original ATUS variable name - tpye: R data class\nUse: Identifying available respondent variables and checking how R imported them (some ought to be factored/otherwise altered)\nNote: Some variables are numeric, but not continuous. Many characteristics are numerically coded categories."
+  },
+  {
+    "objectID": "Analysis/explore_atus.html#documentation-and-codebooks",
+    "href": "Analysis/explore_atus.html#documentation-and-codebooks",
+    "title": "American Time Use Survey: Exploratory Analysis",
+    "section": "1.4 4. Documentation and Codebooks",
+    "text": "1.4 4. Documentation and Codebooks\nLocated in Analysis/Data/Raw/: - lexiconnoex0325.pdf - Activity Coding Lexicon; identifies meanings of activity codes - atuscpscodebk0325.pdf - ATUS-CPS Data Dictionary; includes demographic variables such as PEEDUCA - atusintcodebk0325.interview.pdf - ATUS Interview Data Dictionary; includes interview-related respondent variables\nOriginal Data Souce"
+  },
+  {
+    "objectID": "Analysis/explore_atus.html#important-data-considerations",
+    "href": "Analysis/explore_atus.html#important-data-considerations",
+    "title": "American Time Use Survey: Exploratory Analysis",
+    "section": "1.5 5. Important Data Considerations",
+    "text": "1.5 5. Important Data Considerations\nSurvey structure - Activity Summary contains one row per respondent - Activity variables measure minutes spent on an activity during one diary day. - Zero minutes generally means that activity wass not recorded on that day - The Activity file records individual activity episodes, not one row per respondent\nRespondent coding - Many categorical variables use numeric codes - Special values may incude -1 (blank), -2 (don’t know), and -3 (refused) - Consult the corresponding data dictionary before interpreting values or replacing them with NA\nSurvey weighting - Current counts, distributions, and activity_profile percentages are unweighted sample descriptions - Population-level time-use estimates require appropriate AGUS survey weights - TUFNWGTP is the standard final weight for most years, but 2020 requires special treatment\n2020 - ATUS collection suspended from mid-march to mid-may 2020 - Full-year estimates for 2020 are not representative - Preserve 2020 in atus_full, but use atus_complete_years when comparing complete calendar years - Special 2020 comparisons require differing weights"
   }
 ]
