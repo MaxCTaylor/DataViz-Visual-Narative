@@ -2,5 +2,6 @@
 **/*.quarto_ipynb
 *.csv
 *.dat
+*.rds
 atusintcodebk0325.pdf
 lexiconnoex0325.pdf
