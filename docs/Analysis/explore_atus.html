@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Maxwell Taylor">
-<meta name="dcterms.date" content="2026-11-11">
+<meta name="dcterms.date" content="2026-11-24">
 
 <title>American Time Use Survey: Exploratory Analysis – DataViz.Narrative</title>
 <style>
@@ -4111,6 +4111,10 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
     <a class="dropdown-item" href="../Analysis/explore_atus.html">
  <span class="dropdown-text">American Time Use Survey: Exploratory Analysis</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../Analysis/analysis_atus.html">
+ <span class="dropdown-text">American Time Use Survey: Analytical Exploration</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -4129,18 +4133,27 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#atus-exploratory-analysis-reference-guide" id="toc-atus-exploratory-analysis-reference-guide" class="nav-link active" data-scroll-target="#atus-exploratory-analysis-reference-guide"><span class="header-section-number">1</span> ATUS Exploratory Analysis Reference Guide</a>
+  <li><a href="#american-time-use-survey-atus-2003-2025" id="toc-american-time-use-survey-atus-2003-2025" class="nav-link active" data-scroll-target="#american-time-use-survey-atus-2003-2025"><span class="header-section-number">1</span> American Time Use Survey (ATUS) | 2003-2025</a></li>
+  <li><a href="#data-visualization-semester-project" id="toc-data-visualization-semester-project" class="nav-link" data-scroll-target="#data-visualization-semester-project"><span class="header-section-number">2</span> Data Visualization Semester Project</a></li>
+  <li><a href="#maxell-taylor-mct115" id="toc-maxell-taylor-mct115" class="nav-link" data-scroll-target="#maxell-taylor-mct115"><span class="header-section-number">3</span> Maxell Taylor mct115</a></li>
+  <li><a href="#georgetown-university" id="toc-georgetown-university" class="nav-link" data-scroll-target="#georgetown-university"><span class="header-section-number">4</span> Georgetown University</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5</span> </a></li>
+  <li><a href="#data-source-u.s.-breau-of-labor-statistics" id="toc-data-source-u.s.-breau-of-labor-statistics" class="nav-link" data-scroll-target="#data-source-u.s.-breau-of-labor-statistics"><span class="header-section-number">6</span> Data Source: U.S. Breau of Labor Statistics</a></li>
+  <li><a href="#httpswww.bls.govtusdata.htm" id="toc-httpswww.bls.govtusdata.htm" class="nav-link" data-scroll-target="#httpswww.bls.govtusdata.htm"><span class="header-section-number">7</span> https://www.bls.gov/tus/data.htm</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">8</span> </a></li>
+  <li><a href="#exploratory-analysis-of-american-time-use-data" id="toc-exploratory-analysis-of-american-time-use-data" class="nav-link" data-scroll-target="#exploratory-analysis-of-american-time-use-data"><span class="header-section-number">9</span> Exploratory analysis of American time-use data</a></li>
+  <li><a href="#atus-exploratory-analysis-reference-guide" id="toc-atus-exploratory-analysis-reference-guide" class="nav-link" data-scroll-target="#atus-exploratory-analysis-reference-guide"><span class="header-section-number">10</span> ATUS Exploratory Analysis Reference Guide</a>
   <ul class="collapse">
-  <li><a href="#main-dataframes" id="toc-main-dataframes" class="nav-link" data-scroll-target="#main-dataframes"><span class="header-section-number">1.1</span> 1. Main Dataframes</a></li>
-  <li><a href="#column-reference-objects" id="toc-column-reference-objects" class="nav-link" data-scroll-target="#column-reference-objects"><span class="header-section-number">1.2</span> 2. Column Reference Objects</a></li>
-  <li><a href="#inventory-and-profile-tables" id="toc-inventory-and-profile-tables" class="nav-link" data-scroll-target="#inventory-and-profile-tables"><span class="header-section-number">1.3</span> 3. Inventory and Profile Tables</a>
+  <li><a href="#main-dataframes" id="toc-main-dataframes" class="nav-link" data-scroll-target="#main-dataframes"><span class="header-section-number">10.1</span> 1. Main Dataframes</a></li>
+  <li><a href="#column-reference-objects" id="toc-column-reference-objects" class="nav-link" data-scroll-target="#column-reference-objects"><span class="header-section-number">10.2</span> 2. Column Reference Objects</a></li>
+  <li><a href="#inventory-and-profile-tables" id="toc-inventory-and-profile-tables" class="nav-link" data-scroll-target="#inventory-and-profile-tables"><span class="header-section-number">10.3</span> 3. Inventory and Profile Tables</a>
   <ul class="collapse">
-  <li><a href="#activity_inventory" id="toc-activity_inventory" class="nav-link" data-scroll-target="#activity_inventory"><span class="header-section-number">1.3.1</span> <code>activity_inventory</code></a></li>
-  <li><a href="#activity_profile" id="toc-activity_profile" class="nav-link" data-scroll-target="#activity_profile"><span class="header-section-number">1.3.2</span> <code>activity_profile</code></a></li>
-  <li><a href="#resp_inventory" id="toc-resp_inventory" class="nav-link" data-scroll-target="#resp_inventory"><span class="header-section-number">1.3.3</span> <code>resp_inventory</code></a></li>
+  <li><a href="#activity_inventory" id="toc-activity_inventory" class="nav-link" data-scroll-target="#activity_inventory"><span class="header-section-number">10.3.1</span> <code>activity_inventory</code></a></li>
+  <li><a href="#activity_profile" id="toc-activity_profile" class="nav-link" data-scroll-target="#activity_profile"><span class="header-section-number">10.3.2</span> <code>activity_profile</code></a></li>
+  <li><a href="#resp_inventory" id="toc-resp_inventory" class="nav-link" data-scroll-target="#resp_inventory"><span class="header-section-number">10.3.3</span> <code>resp_inventory</code></a></li>
   </ul></li>
-  <li><a href="#documentation-and-codebooks" id="toc-documentation-and-codebooks" class="nav-link" data-scroll-target="#documentation-and-codebooks"><span class="header-section-number">1.4</span> 4. Documentation and Codebooks</a></li>
-  <li><a href="#important-data-considerations" id="toc-important-data-considerations" class="nav-link" data-scroll-target="#important-data-considerations"><span class="header-section-number">1.5</span> 5. Important Data Considerations</a></li>
+  <li><a href="#documentation-and-codebooks" id="toc-documentation-and-codebooks" class="nav-link" data-scroll-target="#documentation-and-codebooks"><span class="header-section-number">10.4</span> 4. Documentation and Codebooks</a></li>
+  <li><a href="#important-data-considerations" id="toc-important-data-considerations" class="nav-link" data-scroll-target="#important-data-considerations"><span class="header-section-number">10.5</span> 5. Important Data Considerations</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4168,7 +4181,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 11, 2026</p>
+      <p class="date">November 24, 2026</p>
     </div>
   </div>
   
@@ -4180,7 +4193,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </header>
 
 
-<div id="3370e67a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="22">
+<div id="3370e67a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
@@ -4192,61 +4205,153 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning message:
-&quot;package &#39;ggthemes&#39; was built under R version 4.6.2&quot;</code></pre>
+<div class="ansi-escaped-output">
+<pre>Warning message:
+
+&quot;package &#39;ggplot2&#39; was built under R version 4.6.2&quot;
+
+── <span class="ansi-bold">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──
+
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">dplyr    </span> 1.2.1     <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">readr    </span> 2.2.0
+
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">forcats  </span> 1.0.1     <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">stringr  </span> 1.6.0
+
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">ggplot2  </span> 4.0.4     <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">tibble   </span> 3.3.1
+
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">lubridate</span> 1.9.5     <span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">tidyr    </span> 1.3.2
+
+<span class="ansi-green-fg">✔</span> <span class="ansi-blue-fg">purrr    </span> 1.2.2     
+
+── <span class="ansi-bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
+
+<span class="ansi-red-fg">✖</span> <span class="ansi-blue-fg">dplyr</span>::<span class="ansi-green-fg">filter()</span> masks <span class="ansi-blue-fg">stats</span>::filter()
+
+<span class="ansi-red-fg">✖</span> <span class="ansi-blue-fg">dplyr</span>::<span class="ansi-green-fg">lag()</span>    masks <span class="ansi-blue-fg">stats</span>::lag()
+
+<span class="ansi-cyan-fg">ℹ</span> Use the conflicted package (<span style="font-style:italic" class="ansi-blue-fg">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
+
+Warning message:
+
+&quot;package &#39;ggthemes&#39; was built under R version 4.6.2&quot;
+
+
+
+Attaching package: &#39;plotly&#39;
+
+
+
+
+
+The following object is masked from &#39;package:ggplot2&#39;:
+
+
+
+    last_plot
+
+
+
+
+
+The following object is masked from &#39;package:stats&#39;:
+
+
+
+    filter
+
+
+
+
+
+The following object is masked from &#39;package:graphics&#39;:
+
+
+
+    layout
+
+
+
+
+</pre>
 </div>
 </div>
-<p>#======================================== # American Time Use Survey (ATUS) | 2003-2025 # Data Visualization Semester Project # Maxell Taylor mct115 # Georgetown University # # Data Source: U.S. Breau of Labor Statistics # https://www.bls.gov/tus/data.htm# # # Exploratory analysis of American time-use data #========================================</p>
-<div id="ad7735e6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+</div>
+<p>#========================================</p>
+<section id="american-time-use-survey-atus-2003-2025" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> American Time Use Survey (ATUS) | 2003-2025</h1>
+</section>
+<section id="data-visualization-semester-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Data Visualization Semester Project</h1>
+</section>
+<section id="maxell-taylor-mct115" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Maxell Taylor mct115</h1>
+</section>
+<section id="georgetown-university" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Georgetown University</h1>
+</section>
+<section id="section" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> </h1>
+</section>
+<section id="data-source-u.s.-breau-of-labor-statistics" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Data Source: U.S. Breau of Labor Statistics</h1>
+</section>
+<section id="httpswww.bls.govtusdata.htm" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> https://www.bls.gov/tus/data.htm</h1>
+</section>
+<section id="section-1" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> </h1>
+</section>
+<section id="exploratory-analysis-of-american-time-use-data" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Exploratory analysis of American time-use data</h1>
+<p>#========================================</p>
+<div id="ad7735e6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Total minutes per activity per respondent for one day by demographic</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;data/raw/atussum_0325.dat&quot;</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">TUCASEID =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="fu">col_guess</span>()</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional respondent info such as employment, earnings, education</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>atus_resp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;data/raw/atusresp_0325.dat&quot;</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">TUCASEID =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="fu">col_guess</span>()</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Individual activities with stop time + duration</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>atus_act <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;data/raw/atusact_0325.dat&quot;</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">TUCASEID =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="fu">col_guess</span>()</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Total minutes per activity per respondent for one day by demographic</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;data/raw/atussum_0325.dat&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">TUCASEID =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="fu">col_guess</span>()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional respondent info such as employment, earnings, education</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>atus_resp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;data/raw/atusresp_0325.dat&quot;</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">TUCASEID =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="fu">col_guess</span>()</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Individual activities with stop time + duration</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>atus_act <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;data/raw/atusact_0325.dat&quot;</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">TUCASEID =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="fu">col_guess</span>()</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="819d96df" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="819d96df" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial exploration</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimensions</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(atus_sum)  <span class="co"># 258954 x 456</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(atus_resp) <span class="co"># 258954 x 133</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Column names --&gt; join by TUCASEID</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus_sum)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus_resp)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atus_sum)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atus_resp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial exploration</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimensions</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(atus_sum) <span class="co"># 258954 x 456</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(atus_resp) <span class="co"># 258954 x 133</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Column names --&gt; join by TUCASEID</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus_sum)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(atus_resp)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atus_sum)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(atus_resp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <style>
@@ -4667,32 +4772,32 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </table>
 </div>
 </div>
-<div id="c5581a17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
+<div id="c5581a17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check duplicate respondent IDs --&gt; none</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="sc">|&gt;</span> <span class="fu">count</span>(TUCASEID) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>atus_resp <span class="sc">|&gt;</span> <span class="fu">count</span>(TUCASEID) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># df is way to big to parse visually, split as follows</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify activity columns</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># used ChatGPT for pattern syntax: ^ = beginning of string,</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># {6} = repetitions of pattern, $ = end of string</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>activity_columns <span class="ot">&lt;-</span> <span class="fu">names</span>(atus_sum)[</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grepl</span>(<span class="st">&quot;^t[0-9]{6}$&quot;</span>, <span class="fu">names</span>(atus_sum))</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(activity_columns)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(activity_columns)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>respondent_columns <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus_sum),</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  activity_columns</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>respondent_columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check duplicate respondent IDs --&gt; none</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="sc">|&gt;</span> <span class="fu">count</span>(TUCASEID) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>atus_resp <span class="sc">|&gt;</span> <span class="fu">count</span>(TUCASEID) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># df is way to big to parse visually, split as follows</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify activity columns</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># used ChatGPT for pattern syntax: ^ = beginning of string,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># {6} = repetitions of pattern, $ = end of string</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>activity_columns <span class="ot">&lt;-</span> <span class="fu">names</span>(atus_sum)[</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grepl</span>(<span class="st">&quot;^t[0-9]{6}$&quot;</span>, <span class="fu">names</span>(atus_sum))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(activity_columns)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(activity_columns)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>respondent_columns <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus_sum),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  activity_columns</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>respondent_columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -4748,32 +4853,32 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <ol class="list-inline"><li>&#39;TUCASEID&#39;</li><li>&#39;GEMETSTA&#39;</li><li>&#39;GTMETSTA&#39;</li><li>&#39;PEEDUCA&#39;</li><li>&#39;PEHSPNON&#39;</li><li>&#39;PTDTRACE&#39;</li><li>&#39;TEAGE&#39;</li><li>&#39;TELFS&#39;</li><li>&#39;TEMJOT&#39;</li><li>&#39;TESCHENR&#39;</li><li>&#39;TESCHLVL&#39;</li><li>&#39;TESEX&#39;</li><li>&#39;TESPEMPNOT&#39;</li><li>&#39;TRCHILDNUM&#39;</li><li>&#39;TRDPFTPT&#39;</li><li>&#39;TRERNWA&#39;</li><li>&#39;TRHOLIDAY&#39;</li><li>&#39;TRSPFTPT&#39;</li><li>&#39;TRSPPRES&#39;</li><li>&#39;TRYHHCHILD&#39;</li><li>&#39;TUDIARYDAY&#39;</li><li>&#39;TUFNWGTP&#39;</li><li>&#39;TEHRUSLT&#39;</li><li>&#39;TUYEAR&#39;</li><li>&#39;TU20FWGT&#39;</li></ol>
 </div>
 </div>
-<div id="c2407df5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="c2407df5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data preperation</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Respondent columns not already in summary</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>resp_extra <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(atus_resp),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(atus_sum)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(resp_extra) <span class="co"># 115</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Join additional information using TUCASEID</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>atus_full <span class="ot">&lt;-</span> atus_sum <span class="sc">|&gt;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    atus_resp <span class="sc">|&gt;</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(TUCASEID, <span class="fu">all_of</span>(resp_extra)),</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">&quot;TUCASEID&quot;</span>,</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">relationship =</span> <span class="st">&quot;one-to-one&quot;</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(atus_full) <span class="co"># 258954 x 571</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for unmatched respondent IDs </span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">anti_join</span>(atus_sum, atus_resp, <span class="at">by =</span> <span class="st">&quot;TUCASEID&quot;</span>)) <span class="co"># = 0, so verified</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data preperation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Respondent columns not already in summary</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>resp_extra <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus_resp),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(atus_sum)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(resp_extra) <span class="co"># 115</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Join additional information using TUCASEID</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>atus_full <span class="ot">&lt;-</span> atus_sum <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    atus_resp <span class="sc">|&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(TUCASEID, <span class="fu">all_of</span>(resp_extra)),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">&quot;TUCASEID&quot;</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">relationship =</span> <span class="st">&quot;one-to-one&quot;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(atus_full) <span class="co"># 258954 x 571</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for unmatched respondent IDs</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">anti_join</span>(atus_sum, atus_resp, <span class="at">by =</span> <span class="st">&quot;TUCASEID&quot;</span>)) <span class="co"># = 0, so verified</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 115
@@ -4790,32 +4895,32 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 0
 </div>
 </div>
-<div id="667855e9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="667855e9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Respondent characteristics exploration</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># respondents per year</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="sc">|&gt;</span> <span class="fu">count</span>(TUYEAR)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Age distribution</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(atus_sum<span class="sc">$</span>TEAGE)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>p_age <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(atus_sum, <span class="fu">aes</span>(<span class="at">x =</span> TEAGE)) <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Age Distribution of ATUS Respondents&quot;</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Number of respondents&quot;</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>p_age</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex distribution</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="sc">|&gt;</span> <span class="fu">count</span>(TESEX)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = male, 2 = female</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 114974 male (44.4%) vs 143980 female (55.6%)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Respondent characteristics exploration</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># respondents per year</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="sc">|&gt;</span> <span class="fu">count</span>(TUYEAR)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Age distribution</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(atus_sum<span class="sc">$</span>TEAGE)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>p_age <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(atus_sum, <span class="fu">aes</span>(<span class="at">x =</span> TEAGE)) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Age Distribution of ATUS Respondents&quot;</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Number of respondents&quot;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>p_age</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Sex distribution</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>atus_sum <span class="sc">|&gt;</span> <span class="fu">count</span>(TESEX)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = male, 2 = female</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 114974 male (44.4%) vs 143980 female (55.6%)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -4963,30 +5068,29 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </div>
 </div>
 </div>
-<div id="425c5ff4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="425c5ff4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity variable inventory</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>activity_inventory <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">code =</span> activity_columns, <span class="co"># breaks each tabcdef into parasable pices</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#broad category (e.g., 01 = Personal Care Activities, 02 = Household activities)</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">tier_1 =</span> <span class="fu">substr</span>(activity_columns, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#sub-category (e.g., 0101 = sleeping, 0102 = grooming)</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tier_2 =</span> <span class="fu">substr</span>(activity_columns, <span class="dv">2</span>, <span class="dv">5</span>),</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#specific-activity (e.g., 010101 = sleeping, 010102 = sleeplessness)</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">tier_3 =</span> <span class="fu">substr</span>(activity_columns, <span class="dv">2</span>, <span class="dv">7</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># How many activity codes per broad category?</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>activity_inventory <span class="sc">|&gt;</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tier_1, <span class="at">name =</span> <span class="st">&quot;n_codes&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(tier_1)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(activity_inventory, <span class="dv">20</span>) <span class="co"># utilize Analysis\Data\Raw\lexiconnoex0325.pdf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity variable inventory</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>activity_inventory <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">code =</span> activity_columns, <span class="co"># breaks each tabcdef into parasable pices</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#broad category (e.g. 01 = Personal Care Activities 02 = Household activities)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">tier_1 =</span> <span class="fu">substr</span>(activity_columns, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#sub-category (e.g., 0101 = sleeping, 0102 = grooming)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">tier_2 =</span> <span class="fu">substr</span>(activity_columns, <span class="dv">2</span>, <span class="dv">5</span>),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#specific-activity (e.g., 010101 = sleeping, 010102 = sleeplessness)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">tier_3 =</span> <span class="fu">substr</span>(activity_columns, <span class="dv">2</span>, <span class="dv">7</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># How many activity codes per broad category?</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>activity_inventory <span class="sc">|&gt;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tier_1, <span class="at">name =</span> <span class="st">&quot;n_codes&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(tier_1)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(activity_inventory, <span class="dv">20</span>) <span class="co"># utilize Analysis\Data\Raw\lexiconnoex0325.pdf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -5219,46 +5323,46 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </table>
 </div>
 </div>
-<div id="d83b843f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="52">
+<div id="d83b843f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity variable profiles</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># table describing the structure of data</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(activity_columns, <span class="cf">function</span>(code) {</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> atus_full[[code]]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">code =</span> code,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># number of respondents with positive minutes for activity</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_positive =</span> <span class="fu">sum</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Percentage of respondents with nonmissing values who recorded positive minutes</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_positive =</span> <span class="fu">round</span>(<span class="fu">mean</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_missing =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(x)),</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for respondent variables: -1 = blank, -2 = Don&#39;t know, -3 = Refused</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_negative =</span> <span class="fu">sum</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_distinct =</span> <span class="fu">n_distinct</span>(x)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine with activity hierarchy</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="ot">&lt;-</span> activity_profile <span class="sc">|&gt;</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(activity_inventory, <span class="at">by =</span> <span class="st">&quot;code&quot;</span>)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Most frequently recorded activities</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="sc">|&gt;</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_positive)) <span class="sc">|&gt;</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Least frequently recorded activities</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="sc">|&gt;</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n_positive <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(n_positive) <span class="sc">|&gt;</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co"># How many codes have no positive observations?</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(activity_profile<span class="sc">$</span>n_positive <span class="sc">==</span> <span class="dv">0</span>) <span class="co">#5</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="sc">|&gt;</span> <span class="fu">filter</span>(n_positive <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activity variable profiles</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># table describing the structure of data</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(activity_columns, <span class="cf">function</span>(code) {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> atus_full[[code]]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">code =</span> code,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># number of respondents with positive minutes for activity</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_positive =</span> <span class="fu">sum</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Percent respondents with nonmissing values who recorded positive minutes</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_positive =</span> <span class="fu">round</span>(<span class="fu">mean</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_missing =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(x)),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for respondent variables: -1 = blank, -2 = Don&#39;t know, -3 = Refused</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_negative =</span> <span class="fu">sum</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_distinct =</span> <span class="fu">n_distinct</span>(x)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine with activity hierarchy</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="ot">&lt;-</span> activity_profile <span class="sc">|&gt;</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(activity_inventory, <span class="at">by =</span> <span class="st">&quot;code&quot;</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Most frequently recorded activities</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="sc">|&gt;</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_positive)) <span class="sc">|&gt;</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Least frequently recorded activities</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="sc">|&gt;</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n_positive <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(n_positive) <span class="sc">|&gt;</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co"># How many codes have no positive observations?</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(activity_profile<span class="sc">$</span>n_positive <span class="sc">==</span> <span class="dv">0</span>) <span class="co">#5</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>activity_profile <span class="sc">|&gt;</span> <span class="fu">filter</span>(n_positive <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -5742,24 +5846,26 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </table>
 </div>
 </div>
-<div id="f2366ca3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="55">
+<div id="f2366ca3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Respondent variable inventory</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 25 non-activity variables from atus_sum</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># + 115 additional variables from atus_resp</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>resp_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(respondent_columns, resp_extra)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>resp_inventory <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> resp_columns,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">sapply</span>( <span class="co"># apply function to each column</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    atus_full[resp_columns], <span class="co"># the 140 non-activity variables</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) <span class="fu">class</span>(x)[<span class="dv">1</span>] <span class="co"># returns the first class of x = atus_full[...]</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> <span class="fu">unname</span>()</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>resp_inventory</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Respondent variable inventory</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 25 non-activity variables from atus_sum</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># + 115 additional variables from atus_resp</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>resp_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(respondent_columns, resp_extra)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>resp_inventory <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> resp_columns,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">sapply</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># apply function to each column</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    atus_full[resp_columns], <span class="co"># the 140 non-activity variables</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) <span class="fu">class</span>(x)[<span class="dv">1</span>] <span class="co"># returns the first class of x = atus_full[...]</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unname</span>()</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>resp_inventory</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -6023,30 +6129,30 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </table>
 </div>
 </div>
-<div id="3c756f22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="3c756f22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine selected respondent variables</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># KEY:</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis\Data\Raw\atuscpscodebk0325.pdf</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis\Data\Raw\atusintcodebk0325.interview.pdf</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g., PEEDUCA --&gt; p = personal, e = edited, educa = education</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># for respondent variables: -1 = blank, -2 = Don&#39;t know, -3 = Refused</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Education</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span> <span class="fu">count</span>(PEEDUCA, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 31 = less than 1st grade --&gt; 46 = Doctoral degree</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 39 = HS Diploma, 43 = Bachelor&#39;s</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Labor force status</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span> <span class="fu">count</span>(TELFS, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = employed at work --&gt; 5 = not in labor force</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># School enrollment</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span> <span class="fu">count</span>(TESCHENR, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = yes, 2 = no</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># -1 = blank, -3 = refused</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examine selected respondent variables</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># KEY:</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis\Data\Raw\atuscpscodebk0325.pdf</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis\Data\Raw\atusintcodebk0325.interview.pdf</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g., PEEDUCA --&gt; p = personal, e = edited, educa = education</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># for respondent variables: -1 = blank, -2 = Don&#39;t know, -3 = Refused</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Education</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span> <span class="fu">count</span>(PEEDUCA, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 31 = less than 1st grade --&gt; 46 = Doctoral degree</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 39 = HS Diploma, 43 = Bachelor&#39;s</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Labor force status</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span> <span class="fu">count</span>(TELFS, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = employed at work --&gt; 5 = not in labor force</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># School enrollment</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span> <span class="fu">count</span>(TESCHENR, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = yes, 2 = no</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># -1 = blank, -3 = refused</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -6200,27 +6306,29 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </table>
 </div>
 </div>
-<div id="28295f1c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="28295f1c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data availablity by year</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>selected_code <span class="ot">&lt;-</span> <span class="st">&quot;t010101&quot;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TUYEAR) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_missing =</span> <span class="fu">round</span>(</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(<span class="fu">is.na</span>(.data[[selected_code]])) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_positive =</span> <span class="fu">round</span>(</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(.data[[selected_code]] <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># HOWEVER: Disclaimer on 2020</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data availablity by year</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>selected_code <span class="ot">&lt;-</span> <span class="st">&quot;t010101&quot;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>atus_full <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TUYEAR) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_missing =</span> <span class="fu">round</span>(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(<span class="fu">is.na</span>(.data[[selected_code]])) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      <span class="dv">2</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_positive =</span> <span class="fu">round</span>(</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(.data[[selected_code]] <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>      <span class="dv">2</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># HOWEVER: Disclaimer on 2020</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -6386,17 +6494,17 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <blockquote class="blockquote">
 <p>“The 2020 ATUS was greatly affected by the coronavirus (COVID-19) pandemic. Data collection was suspended in 2020 from mid-March to mid-May. ATUS data files for 2020 contain all ATUS data collected in 2020—both before and after data collection was suspended. For more information, please see the <a href="https://www.bls.gov/tus/notices/2021/covid19.htm">Impact of the COVID-19 pandemic on the 2020 ATUS page</a>.”</p>
 </blockquote>
-<p>https://www.bls.gov/tus/data/datafiles-0325.htm?utm_source=chatgpt.com</p>
-<div id="1c778d06" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="63">
+<p>https://www.bls.gov/tus/data/datafiles-0325.htm</p>
+<div id="1c778d06" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exclude 2020 for when comparison requires full year</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>atus_complete_years <span class="ot">&lt;-</span> atus_full <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TUYEAR <span class="sc">!=</span> <span class="dv">2020</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>atus_complete_years <span class="sc">|&gt;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(TUYEAR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exclude 2020 for when comparison requires full year</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>atus_complete_years <span class="ot">&lt;-</span> atus_full <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TUYEAR <span class="sc">!=</span> <span class="dv">2020</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>atus_complete_years <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(TUYEAR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -6504,15 +6612,16 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </table>
 </div>
 </div>
-<section id="atus-exploratory-analysis-reference-guide" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> ATUS Exploratory Analysis Reference Guide</h1>
-<section id="main-dataframes" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="main-dataframes"><span class="header-section-number">1.1</span> 1. Main Dataframes</h2>
+</section>
+<section id="atus-exploratory-analysis-reference-guide" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> ATUS Exploratory Analysis Reference Guide</h1>
+<section id="main-dataframes" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="main-dataframes"><span class="header-section-number">10.1</span> 1. Main Dataframes</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 13%">
+<col style="width: 42%">
+<col style="width: 43%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -6549,15 +6658,21 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </tr>
 </tbody>
 </table>
-<p><strong>Important:</strong> - ALL original datasets unchanged - <code>atus_sum</code> and <code>atus_resp</code> joined using <code>TUCASEID</code>, with one-to-one relationship and no unmatched IDs - <code>atus_act</code> has multiple records per respondent and should NOT be joined directly without accounting for this - <code>atus_complete_years</code> excludes 2020 due to pandemic-related interruption in data collection (see above disclaimer)</p>
+<p><strong>Important:</strong></p>
+<ul>
+<li>ALL original datasets unchanged</li>
+<li><code>atus_sum</code> and <code>atus_resp</code> joined using <code>TUCASEID</code>, with one-to-one relationship and no unmatched IDs</li>
+<li><code>atus_act</code> has multiple records per respondent and should NOT be joined directly without accounting for this</li>
+<li><code>atus_complete_years</code> excludes 2020 due to pandemic-related interruption in data collection (see above disclaimer)</li>
+</ul>
 </section>
-<section id="column-reference-objects" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="column-reference-objects"><span class="header-section-number">1.2</span> 2. Column Reference Objects</h2>
+<section id="column-reference-objects" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="column-reference-objects"><span class="header-section-number">10.2</span> 2. Column Reference Objects</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 16%">
+<col style="width: 43%">
+<col style="width: 39%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -6590,36 +6705,104 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </tbody>
 </table>
 </section>
-<section id="inventory-and-profile-tables" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="inventory-and-profile-tables"><span class="header-section-number">1.3</span> 3. Inventory and Profile Tables</h2>
-<section id="activity_inventory" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="activity_inventory"><span class="header-section-number">1.3.1</span> <code>activity_inventory</code></h3>
-<p>One row per activity code, containing: - <code>code</code>: Original ATUS activity variable name - <code>tier_1</code>: Broad activity category (first two digits) - <code>tier_2</code>: Subcategory (first four digits) - <code>tier_3</code>: Specific activity (all six digits)</p>
+<section id="inventory-and-profile-tables" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="inventory-and-profile-tables"><span class="header-section-number">10.3</span> 3. Inventory and Profile Tables</h2>
+<section id="activity_inventory" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="activity_inventory"><span class="header-section-number">10.3.1</span> <code>activity_inventory</code></h3>
+<p>One row per activity code, containing:</p>
+<ul>
+<li><code>code</code>: Original ATUS activity variable name</li>
+<li><code>tier_1</code>: Broad activity category (first two digits)</li>
+<li><code>tier_2</code>: Subcategory (first four digits)</li>
+<li><code>tier_3</code>: Specific activity (all six digits)</li>
+</ul>
 <p><strong>Use:</strong> Understanding the activity classification hierarchy, and locating codes in the Activity Lexicon</p>
 </section>
-<section id="activity_profile" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="activity_profile"><span class="header-section-number">1.3.2</span> <code>activity_profile</code></h3>
-<p>One row per acticity code, containing: - <code>code</code>: ATUS activity variable - <code>n_positive</code>: Number of respondents reporting positive minutes - <code>pct_positive</code>: Percentage of nonissing observations reporting positive minutes - <code>n_missing</code>: Number of missing values - <code>n_negative</code>: Number of negative values (see above key) - <code>n_distinct</code>: Number of distinct recorded values - <code>tier_1</code>, <code>tier_2</code>, <code>tier_3</code>: Activity classification hierarchy</p>
+<section id="activity_profile" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="activity_profile"><span class="header-section-number">10.3.2</span> <code>activity_profile</code></h3>
+<p>One row per acticity code, containing:</p>
+<ul>
+<li><code>code</code>: ATUS activity variable</li>
+<li><code>n_positive</code>: Number of respondents reporting positive minutes</li>
+<li><code>pct_positive</code>: Percentage of nonissing observations reporting positive minutes</li>
+<li><code>n_missing</code>: Number of missing values</li>
+<li><code>n_negative</code>: Number of negative values (see above key)</li>
+<li><code>n_distinct</code>: Number of distinct recorded values</li>
+<li><code>tier_1</code>, <code>tier_2</code>, <code>tier_3</code>: Activity classification hierarchy</li>
+</ul>
 <p><strong>Use</strong>: Identifying common/rare activities, checking data completeness, investigating unusual values</p>
 </section>
-<section id="resp_inventory" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="resp_inventory"><span class="header-section-number">1.3.3</span> <code>resp_inventory</code></h3>
-<p>One row per non-activity variable, containing: - <code>variable</code>: Original ATUS variable name - <code>tpye</code>: R data class</p>
+<section id="resp_inventory" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="resp_inventory"><span class="header-section-number">10.3.3</span> <code>resp_inventory</code></h3>
+<p>One row per non-activity variable, containing:</p>
+<ul>
+<li><code>variable</code>: Original ATUS variable name</li>
+<li><code>tpye</code>: R data class</li>
+</ul>
 <p><strong>Use</strong>: Identifying available respondent variables and checking how R imported them (some ought to be factored/otherwise altered)</p>
 <p><strong>Note:</strong> Some variables are numeric, but not continuous. Many characteristics are numerically coded categories.</p>
 </section>
 </section>
-<section id="documentation-and-codebooks" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="documentation-and-codebooks"><span class="header-section-number">1.4</span> 4. Documentation and Codebooks</h2>
-<p>Located in <code>Analysis/Data/Raw/</code>: - <code>lexiconnoex0325.pdf</code> - Activity Coding Lexicon; identifies meanings of activity codes - <code>atuscpscodebk0325.pdf</code> - ATUS-CPS Data Dictionary; includes demographic variables such as <code>PEEDUCA</code> - <code>atusintcodebk0325.interview.pdf</code> - ATUS Interview Data Dictionary; includes interview-related respondent variables</p>
+<section id="documentation-and-codebooks" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="documentation-and-codebooks"><span class="header-section-number">10.4</span> 4. Documentation and Codebooks</h2>
+<p>Located in <code>Analysis/Data/Raw/</code>:</p>
+<ul>
+<li><code>lexiconnoex0325.pdf</code> - Activity Coding Lexicon; identifies meanings of activity codes</li>
+<li><code>atuscpscodebk0325.pdf</code> - ATUS-CPS Data Dictionary; includes demographic variables such as <code>PEEDUCA</code></li>
+<li><code>atusintcodebk0325.interview.pdf</code> - ATUS Interview Data Dictionary; includes interview-related respondent variables</li>
+</ul>
 <p><a href="https://www.bls.gov/tus/data/datafiles-0325.htm">Original Data Souce</a></p>
 </section>
-<section id="important-data-considerations" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="important-data-considerations"><span class="header-section-number">1.5</span> 5. Important Data Considerations</h2>
-<p><strong>Survey structure</strong> - Activity Summary contains one row per respondent - Activity variables measure minutes spent on an activity during one diary day. - Zero minutes generally means that activity wass not recorded on that day - The Activity file records individual activity episodes, not one row per respondent</p>
-<p><strong>Respondent coding</strong> - Many categorical variables use numeric codes - Special values may incude -1 (blank), -2 (don’t know), and -3 (refused) - Consult the corresponding data dictionary before interpreting values or replacing them with NA</p>
-<p><strong>Survey weighting</strong> - Current counts, distributions, and <code>activity_profile</code> percentages are unweighted sample descriptions - Population-level time-use estimates require appropriate AGUS survey weights - <code>TUFNWGTP</code> is the standard final weight for most years, but 2020 requires special treatment</p>
-<p><strong>2020</strong> - ATUS collection suspended from mid-march to mid-may 2020 - Full-year estimates for 2020 are not representative - Preserve 2020 in <code>atus_full</code>, but use <code>atus_complete_years</code> when comparing complete calendar years - Special 2020 comparisons require differing weights</p>
+<section id="important-data-considerations" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="important-data-considerations"><span class="header-section-number">10.5</span> 5. Important Data Considerations</h2>
+<p><strong>Survey structure</strong></p>
+<ul>
+<li>Activity Summary contains one row per respondent</li>
+<li>Activity variables measure minutes spent on an activity during one diary day.</li>
+<li>Zero minutes generally means that activity wass not recorded on that day</li>
+<li>The Activity file records individual activity episodes, not one row per respondent</li>
+</ul>
+<p><strong>Respondent coding</strong></p>
+<ul>
+<li>Many categorical variables use numeric codes</li>
+<li>Special values may incude -1 (blank), -2 (don’t know), and -3 (refused)</li>
+<li>Consult the corresponding data dictionary before interpreting values or replacing them with NA</li>
+</ul>
+<p><strong>Survey weighting</strong></p>
+<ul>
+<li>Current counts, distributions, and <code>activity_profile</code> percentages are unweighted sample descriptions</li>
+<li>Population-level time-use estimates require appropriate AGUS survey weights</li>
+<li><code>TUFNWGTP</code> is the standard final weight for most years, but 2020 requires special treatment</li>
+</ul>
+<p><strong>2020</strong></p>
+<ul>
+<li>ATUS collection suspended from mid-march to mid-may 2020</li>
+<li>Full-year estimates for 2020 are not representative</li>
+<li>Preserve 2020 in <code>atus_full</code>, but use <code>atus_complete_years</code> when comparing complete calendar years</li>
+<li>Special 2020 comparisons require differing weights</li>
+</ul>
+<div id="d71ba9da" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save prepared datasets</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;data/processed&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(atus_full, <span class="st">&quot;data/processed/atus_full.rds&quot;</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(atus_complete_years, <span class="st">&quot;data/processed/atus_complete_years.rds&quot;</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save reference tables</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(activity_inventory, <span class="st">&quot;data/processed/activity_inventory.rds&quot;</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(activity_profile, <span class="st">&quot;data/processed/activity_profile.rds&quot;</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(resp_inventory, <span class="st">&quot;data/processed/resp_inventory.rds&quot;</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># For top of next file:</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidyverse) # nolint: commented_code_linter.</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># atus_full &lt;- readRDS(&quot;data/processed/atus_full.rds&quot;) # nolint</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># activity_profile &lt;- readRDS(&quot;data/processed/activity_profile.rds&quot;) # nolint</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 
 
 </section>

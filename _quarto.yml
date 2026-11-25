@@ -11,12 +11,13 @@ website:
       - about.qmd
       - text: Demos
         menu:
-        - Demo\plotly-python.ipynb #needs path, about.qmd is in the same folder
-        - Demo\lecture-notes.out.ipynb
-        - Demo\app.py
+          - Demo\plotly-python.ipynb #needs path, about.qmd is in the same folder
+          - Demo\lecture-notes.out.ipynb
+          - Demo\app.py
       - text: Analyses
         menu:
-        - Analysis\explore_atus.ipynb
+          - Analysis\explore_atus.ipynb
+          - Analysis\analysis_atus.ipynb
 
 format:
   html:
@@ -33,6 +34,3 @@ execute:
   error: true
   cache: true
   freeze: auto
-
-
-
